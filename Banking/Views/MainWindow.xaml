@@ -1,0 +1,245 @@
+﻿<Window
+	x:Class="Banking.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:cmd="clr-namespace:Banking.Commands"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:Banking"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="clr-namespace:Banking.ModelViews"
+	Title="Banking"
+	Width="800"
+	Height="450"
+	Closing="Window_Closing"
+	mc:Ignorable="d">
+
+  <Window.CommandBindings>
+    <CommandBinding
+			CanExecute="OptionsCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Options"
+			Executed="OptionsCommand_Execute" />
+    <CommandBinding
+			CanExecute="BackupCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Backup"
+			Executed="BackupCommand_Execute" />
+    <CommandBinding
+			CanExecute="ExitCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Exit"
+			Executed="ExitCommand_Execute" />
+    <CommandBinding
+			CanExecute="BankCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Bank"
+			Executed="BankCommand_Execute" />
+    <CommandBinding
+			CanExecute="ImportCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Import"
+			Executed="ImportCommand_Execute" />
+    <CommandBinding
+			CanExecute="BalanceCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Balance"
+			Executed="BalanceCommand_Execute" />
+    <CommandBinding
+			CanExecute="OverviewCommand_CanExecute"
+			Command="cmd:MainWindowCommands.Overview"
+			Executed="OverviewCommand_Execute" />
+    <CommandBinding
+			CanExecute="ImportABNCommand_CanExecute"
+			Command="cmd:MainWindowCommands.ImportABN"
+			Executed="ImportABNCommand_Execute" />
+    <CommandBinding
+			CanExecute="ImportINGCommand_CanExecute"
+			Command="cmd:MainWindowCommands.ImportING"
+			Executed="ImportINGCommand_Execute" />
+    <CommandBinding
+			CanExecute="ProcessImportTableCommand_CanExecute"
+			Command="cmd:MainWindowCommands.ProcessImportTable"
+			Executed="ProcessImportTableCommand_Execute" />
+    <CommandBinding
+			CanExecute="ClearImportTableCommand_CanExecute"
+			Command="cmd:MainWindowCommands.ClearImportTable"
+			Executed="ClearImportTableCommand_Execute" />
+    <CommandBinding
+			CanExecute="ImportOVCardCommand_CanExecute"
+			Command="cmd:MainWindowCommands.ImportOVCard"
+			Executed="ImportOVCardCommand_Execute" />
+    <CommandBinding
+			CanExecute="OVCardListCommand_CanExecute"
+			Command="cmd:MainWindowCommands.OVCardList"
+			Executed="OVCardListCommand_Execute" />
+    <CommandBinding
+      CanExecute="HistoryCommand_CanExecute"
+      Command="cmd:MainWindowCommands.History"
+      Executed="HistoryCommand_Execute" />
+    <CommandBinding
+			CanExecute="LastBackupCommand_CanExecute"
+			Command="cmd:MainWindowCommands.LastBackup"
+			Executed="LastBackupCommand_Execute" />
+  </Window.CommandBindings>
+
+  <Window.Resources>
+    <BooleanToVisibilityConverter x:Key="Converter" />
+  </Window.Resources>
+
+  <Grid>
+    <Grid.Resources>
+      <vm:OptionModelView x:Key="Options" />
+    </Grid.Resources>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="5" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="5" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Menu
+			Grid.Row="0"
+			Grid.Column="0"
+			Grid.ColumnSpan="3">
+      <MenuItem Header="_File">
+        <MenuItem Command="cmd:MainWindowCommands.Options" />
+        <MenuItem Command="cmd:MainWindowCommands.Backup" />
+        <Separator />
+        <MenuItem Command="cmd:MainWindowCommands.Exit" />
+      </MenuItem>
+      <MenuItem Header="_Lists">
+        <MenuItem Command="cmd:MainWindowCommands.Bank" />
+        <MenuItem Command="cmd:MainWindowCommands.Import" />
+        <Separator />
+        <MenuItem Command="cmd:MainWindowCommands.Overview" />
+        <MenuItem Command="cmd:MainWindowCommands.Balance" />
+      </MenuItem>
+      <MenuItem Header="_Import">
+        <MenuItem Command="cmd:MainWindowCommands.ImportABN" />
+        <MenuItem Command="cmd:MainWindowCommands.ImportING" />
+        <Separator />
+        <MenuItem Command="cmd:MainWindowCommands.ProcessImportTable" />
+        <MenuItem Command="cmd:MainWindowCommands.ClearImportTable" />
+      </MenuItem>
+      <MenuItem Header="_OV Card">
+        <MenuItem Command="cmd:MainWindowCommands.OVCardList" />
+        <Separator />
+        <MenuItem Command="cmd:MainWindowCommands.ImportOVCard" />
+      </MenuItem>
+      <MenuItem Header="_Help">
+        <MenuItem Command="cmd:MainWindowCommands.LastBackup" />
+        <Separator />
+        <MenuItem Command="cmd:MainWindowCommands.History" />
+      </MenuItem>
+    </Menu>
+
+    <StatusBar
+			Grid.Row="3"
+			Grid.Column="0"
+			Grid.ColumnSpan="3">
+      <StatusBarItem Name="DbNameStatusBarItem">
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="database = " />
+          <TextBlock Name="DbNameTextBlock" Text="{Binding Options.DbName}" />
+        </StackPanel>
+      </StatusBarItem>
+      <Separator />
+      <StatusBarItem />
+    </StatusBar>
+
+    <WrapPanel
+			Grid.Row="2"
+			Grid.Column="1"
+			Orientation="Horizontal">
+
+      <Border
+				Margin="5"
+				Padding="5"
+				BorderThickness="1"
+				CornerRadius="15">
+        <Border.Background>
+          <SolidColorBrush Color="#FF96D764" />
+        </Border.Background>
+        <Border.BorderBrush>
+          <SolidColorBrush Color="DarkGray" />
+        </Border.BorderBrush>
+        <StackPanel Orientation="Vertical">
+          <TextBlock FontWeight="Bold" Text="Actueel rekeningen:" />
+          <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Width="85" Text="Totaal records: " />
+              <TextBlock Text="{Binding AccountCount}" />
+            </StackPanel>
+          </StackPanel>
+          <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Width="85" Text="Laatste datum: " />
+              <TextBlock Text="{Binding AccountMaxDate, StringFormat=yyyy-MM-dd}" />
+            </StackPanel>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border
+				Margin="5"
+				Padding="5"
+				BorderThickness="1"
+				CornerRadius="15">
+        <Border.Background>
+          <SolidColorBrush Color="#7FD79664" />
+        </Border.Background>
+        <Border.BorderBrush>
+          <SolidColorBrush Color="LightGray" />
+        </Border.BorderBrush>
+        <StackPanel Orientation="Vertical">
+          <TextBlock FontWeight="Bold" Text="Actueel imports:" />
+          <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Width="85" Text="Totaal records: " />
+              <TextBlock Text="{Binding ImportCount}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Width="85" Text="Laatse import: " />
+              <TextBlock Text="{Binding ImportDate, StringFormat=yyyy-MM-dd}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Width="85" Text="Eerste datum: " />
+              <TextBlock Text="{Binding ImportMinDate, StringFormat=yyyy-MM-dd}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Width="85" Text="Laatste datum: " />
+              <TextBlock Text="{Binding ImportMaxDate, StringFormat=yyyy-MM-dd}" />
+            </StackPanel>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Separator />
+
+      <Border
+				Margin="5"
+				Padding="5"
+				BorderThickness="1"
+				CornerRadius="15"
+				Visibility="{Binding HasMissedTallies, Converter={StaticResource Converter}}">
+        <Border.Background>
+          <SolidColorBrush Color="#7FF4FF04" />
+        </Border.Background>
+        <Border.BorderBrush>
+          <SolidColorBrush Color="LightGray" />
+        </Border.BorderBrush>
+        <StackPanel Orientation="Vertical">
+          <TextBlock FontWeight="Bold" Text="Niet alle tallies" />
+          <TextBlock FontWeight="Bold" Text="zijn ingevuld." />
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Niet ingevuld: " />
+            <TextBlock Text="{Binding MissedTalliesCount}" />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+    </WrapPanel>
+
+
+  </Grid>
+</Window>

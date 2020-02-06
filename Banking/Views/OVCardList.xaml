@@ -1,0 +1,48 @@
+﻿<Window x:Class="Banking.Views.OVCardList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Banking.Views"
+        mc:Ignorable="d"
+        Title="OV-Card" Height="450" Width="800">
+	<Grid>
+		<DataGrid Name="OVCardDataGrid"
+							AutoGenerateColumns="False"
+							IsReadOnly="True">
+			<DataGrid.Resources>
+				<Style TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="FontWeight" Value="SemiBold"/>
+				</Style>
+			</DataGrid.Resources>
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Datum"
+													  Binding="{Binding Date, StringFormat=yyyy-MM-dd}"/>
+				<DataGridTextColumn Header="In"
+														Binding="{Binding CheckIn, StringFormat=HH:mm}"
+														Width="36"/>
+				<DataGridTextColumn Header="Vertrek"
+														Binding="{Binding Departure}"/>
+				<DataGridTextColumn Header="Uit"
+														Binding="{Binding CheckOut, StringFormat=HH:mm}"
+														Width="36"/>
+				<DataGridTextColumn Header="Bestemming"
+										        Binding="{Binding Destination}"/>
+				<DataGridTextColumn Header="Bedrag"
+														Binding="{Binding Amount, StringFormat=0.00}"
+														Width="50">
+					<DataGridTextColumn.CellStyle>
+						<Style TargetType="{x:Type DataGridCell}">
+							<Setter Property="HorizontalAlignment" Value="Right"/>
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="Actie"
+														Binding="{Binding Transaction}"/>
+				<DataGridTextColumn Header="Reis"
+														Binding="{Binding Travel}"
+														Width="*"/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Window>

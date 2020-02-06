@@ -1,0 +1,81 @@
+Version 2.1.0.51 (2020-02-06)
+* Moved the source folder.
+* MisselTallies is extern with an json file.
+
+Version 2.0.5.50 (2020-02-01)
+* Updated PathExtension with SavePath().
+
+Version 2.0.5.49 (2020-02-01)
+* Removed AboutWindow.
+* Moved the Bug/Wish list to README.md.
+* Implemented HistoryWindow.
+* Updated AccountWindow, the TextBox for Account.Name was too short.
+
+Version 2.0.4.48 (2020-02-01)
+* Updated [ImportProcessModelView_SQL], changed "Huis Soesterberg 010".
+
+Version 2.0.3.47 (2020-01-27)
+* Balance.json moved to OneDrive when in Release mode.
+* Renamed ModelViews folder to ViewModels.
+
+Version 2.0.2.46 (2010-01-07)
+* Updated [ImportProcessModelView_SQL], added "Support actie 030" with corrections with unexpected expenses.
+* Updated [ImportProcessModelView_SQL], added "Verzekering opstal 040" with corrections with unexpected expenses.
+* Updated AccountViewModel to mark the "Mutation" field with bold and red when "TallyName" is empty and the
+  "Mutation" is 'Incasso'.
+
+Version 2.0.1.45 (2019-12-01)
+* Updated [ImportProcessModelView_SQL], added "Telefoon Soesterberg 020".
+* Updated [ImportProcessModelView_SQL], changed "Boodschappen Soesterberg 010".
+
+Version 2.0.1.44 (2019-11-02)
+* Updated [ImportProcessModelView_SQL], added "Uitkering WIA-gat 010".
+* Updated [ImportProcessModelView_SQL], changed "Huis Soesterberg 010".
+
+Version 2.0.1.43 (2019-10-02)
+* Bug fix: Balance.json is not existing.
+* Updated Target framework to ".NET Framework 4.8".
+* Updated EntityFramework version 6.3.0.
+
+Version 2.0.1.42 (2019-10-02)
+* Options "ImportBankPath", "ImportOVPath" and "BackupPath" can working
+  with the %OneDrive% environment variable.
+* Added TranslatePath in PathExtensions.
+
+Version 2.0.0.41 (2019-08-15)
+* OVCardList DataGrid format.
+* In OVTravel Direction split in Direction and Address.
+
+Version 2.0.0.40 (2019-08-09)
+* OVCard and OVTravel.
+* Added OVCardList.
+
+Version 2.0.0.39 (2019-08-05)
+* Added Last backup.
+* Added AboutModelView.
+* Added AboutWindow.
+* Added BWList.txt.
+* Added History.txt.
+
+Version 2.0.0.38 (2019-08-03)
+* [OVTravel] in [OVCard].
+* Added OVTravel table in database and source.
+
+Version 2.0.0.37 (2019-07-31)
+* Prevent to duplicate records.
+* Added [OV Card] in MainWindow menu.
+* Added ImportOVCardModelView.
+* Added ImportOVCardPath in OptionModelView and OptionWindow.
+* Added DefaultCardNumber in OptionModelView and OptionWindow.
+* Renamed ImportPath to ImportBankPath in OptionModelView and OptionWindow.
+
+Version 2.0.0.36 (2019-07-28)
+* Added OVCard table in database and source.
+
+Version 1.3.0.35 (2019-07-12)
+* Added SQL backup.
+* Added BackupPath in OptionModelView and OptionWindow.
+
+Making a backup can cause an exception (access denied) when the backup folder is part of private folder system.
+
+Solve a extern error: Add [NT service\MSSqlServer] account to folder.
