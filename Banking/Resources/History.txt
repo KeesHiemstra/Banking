@@ -1,4 +1,7 @@
 Version 2.1.0.51 (2020-02-06)
+* Added a background image.
+* Backup the MissingTallies.json.
+* Added splash screen.
 * Moved the source folder.
 * MisselTallies is extern with an json file.
 

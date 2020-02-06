@@ -409,7 +409,15 @@ namespace Banking.ModelViews
         File.Copy(BALANCE, backupFile.TranslatePath());
       }
 
-      MessageBox.Show($"Backup created successful", 
+			//The file name is several file used.
+			backupFile = $"{Options.BackupPath.TranslatePath()}\\{Options.DbName}-MissedTallies-{backupDate}.json";
+			string MissingTalliesJson = "%OneDrive%\\Data\\Banking\\MissedTallies.json".TranslatePath();
+			if (File.Exists(MissingTalliesJson))
+			{
+				File.Copy(MissingTalliesJson, backupFile.TranslatePath());
+			}
+
+			MessageBox.Show($"Backup created successful", 
 				"Backup", 
 				MessageBoxButton.OK, 
 				MessageBoxImage.Information);

@@ -147,6 +147,11 @@
       <StatusBarItem />
     </StatusBar>
 
+    <Image Source="pack://application:,,,/Resources/Banking.png"
+           Opacity="0.30"
+           Grid.ColumnSpan="3"
+           Grid.RowSpan="4"/>
+
     <WrapPanel
 			Grid.Row="2"
 			Grid.Column="1"
