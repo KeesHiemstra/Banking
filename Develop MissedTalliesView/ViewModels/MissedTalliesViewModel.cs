@@ -24,6 +24,10 @@ namespace Develop_MissedTalliesView.ViewModels
     #region [ Properties ]
 
     public Dictionary<string, string> MissedTallies { get; set; } = new Dictionary<string, string>();
+    public List<string> Tallies { get; set; }
+    public string TallyName { get; set; } = "test";
+    public string FullTallyName { get; set; }  
+    public string Sql { get; set; }
 
     #endregion
 
