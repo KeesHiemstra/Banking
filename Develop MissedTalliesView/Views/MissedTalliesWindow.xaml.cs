@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Develop_MissedTalliesView.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,31 @@ namespace Develop_MissedTalliesView
   /// </summary>
   public partial class MissedTalliesWindow : Window
   {
-    public MissedTalliesWindow()
+
+    MissedTalliesViewModel MissedTalliesViewModel;
+
+    public MissedTalliesWindow(MissedTalliesViewModel viewModel)
     {
+
       InitializeComponent();
+      MissedTalliesViewModel = viewModel;
+      DataContext = viewModel;
+
+    }
+
+    private void MissedTalliesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      MissedTalliesViewModel.SelectItem((KeyValuePair<string, string>)((ListBox)sender).SelectedItem);
+    }
+
+    private void FullTallyNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      MissedTalliesViewModel.RecordIsUpdated();
+    }
+
+    private void SQLTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      MissedTalliesViewModel.RecordIsUpdated();
     }
   }
 }
