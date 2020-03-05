@@ -1,3 +1,6 @@
+Version 2.1.0.52 (2020-03-05)
+* Changed the backup folder to keep the files together.
+
 Version 2.1.0.51 (2020-02-06)
 * Added a background image.
 * Backup the MissingTallies.json.

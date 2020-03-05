@@ -377,7 +377,10 @@ namespace Banking.ModelViews
 			}
 
 			string backupDate = DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
-			string backupFile = $"{Options.BackupPath.TranslatePath()}\\{Options.DbName}-{backupDate}.bak";
+			string backupFolder = $"{Options.BackupPath.TranslatePath()}\\{Options.DbName}\\{backupDate}";
+			Directory.CreateDirectory(backupFolder);
+
+			string backupFile = $"{backupFolder}\\{backupDate}.bak";
 
 			string sql = $"BACKUP DATABASE [{Options.DbName}] TO DISK = '{backupFile}' WITH NOFORMAT, " +
 					$"NOFORMAT, NOINIT, SKIP, NOREWIND, NOUNLOAD, STATS = 10, NAME = " +
@@ -403,18 +406,17 @@ namespace Banking.ModelViews
 				return;
 			}
 
-			backupFile = $"{Options.BackupPath.TranslatePath()}\\{Options.DbName}-Balance-{backupDate}.json";
+			backupFile = $"{backupFolder}\\Balance.json";
       if (File.Exists(BALANCE))
       {
-        File.Copy(BALANCE, backupFile.TranslatePath());
+        File.Copy(BALANCE, backupFile);
       }
 
-			//The file name is several file used.
-			backupFile = $"{Options.BackupPath.TranslatePath()}\\{Options.DbName}-MissedTallies-{backupDate}.json";
+			backupFile = $"{backupFolder}\\MissedTallies.json";
 			string MissingTalliesJson = "%OneDrive%\\Data\\Banking\\MissedTallies.json".TranslatePath();
 			if (File.Exists(MissingTalliesJson))
 			{
-				File.Copy(MissingTalliesJson, backupFile.TranslatePath());
+				File.Copy(MissingTalliesJson, backupFile);
 			}
 
 			MessageBox.Show($"Backup created successful", 
