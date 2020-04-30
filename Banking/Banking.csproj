@@ -70,6 +70,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -91,6 +92,7 @@
     <Compile Include="Commands\AccountWindowCommands.cs" />
     <Compile Include="Exceptions\ImportExceptions.cs" />
     <Compile Include="Extensions\PathExtensions.cs" />
+    <Compile Include="Extensions\ServiceExtensions.cs" />
     <Compile Include="Models\ABNImport.cs" />
     <Compile Include="Models\Balance.cs" />
     <Compile Include="Models\Bank.cs" />

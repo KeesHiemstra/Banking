@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CHi.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,12 @@ namespace Banking
   /// </summary>
   public partial class App : Application
   {
+    public App()
+    {
+      if (!ServiceExtensions.IsStarted("MSSQLServer", true))
+      {
+        Application.Current.Shutdown();
+      }
+    }
   }
 }

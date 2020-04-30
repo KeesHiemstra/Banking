@@ -1,3 +1,6 @@
+Version 2.1.1.53 (2020-04-30)
+* Added if MSSQLServer is started.
+
 Version 2.1.0.52 (2020-03-05)
 * Changed the backup folder to keep the files together.
 

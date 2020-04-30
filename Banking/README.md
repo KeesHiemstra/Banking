@@ -2,7 +2,7 @@
 
 ### Wish list
 
-- [ ] Make suggestions with SQL statements where are records with an empty "TalleName".
+- [ ] Make suggestions with SQL statements where are records with an empty "TallyName".
 - [ ] Design an icon.
 - [ ] Bug: Pivot is not updated when a record is updated.
 - [ ] Bug: Previous account list when the cell is empty.
