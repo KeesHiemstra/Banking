@@ -101,10 +101,10 @@
     <Compile Include="Models\OVCard.cs" />
     <Compile Include="Models\Overview.cs" />
     <Compile Include="Models\OVTravel.cs" />
-    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\BankAccountViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BankViewModel.cs" />
-    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\ImportDetailViewModel.cs" />
     <Compile Include="ViewModels\ImportABNViewModel.cs" />
     <Compile Include="ViewModels\ImportINGViewModel.cs" />
     <Compile Include="ViewModels\ImportViewModel.cs" />
@@ -119,8 +119,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccountWindow.xaml.cs">
-      <DependentUpon>AccountWindow.xaml</DependentUpon>
+    <Compile Include="Views\BankAccountWindow.cs">
+      <DependentUpon>BankAccountWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BalanceWindow.xaml.cs">
       <DependentUpon>BalanceWindow.xaml</DependentUpon>
@@ -128,8 +128,8 @@
     <Compile Include="Views\BankWindow.xaml.cs">
       <DependentUpon>BankWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailWindow.xaml.cs">
-      <DependentUpon>DetailWindow.xaml</DependentUpon>
+    <Compile Include="Views\ImportDetailWindow.cs">
+      <DependentUpon>ImportDetailWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditBalanceWindow.xaml.cs">
       <DependentUpon>EditBalanceWindow.xaml</DependentUpon>
@@ -149,7 +149,7 @@
     <Compile Include="Views\OverviewWindow.xaml.cs">
       <DependentUpon>OverviewWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AccountWindow.xaml">
+    <Page Include="Views\BankAccountWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -161,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DetailWindow.xaml">
+    <Page Include="Views\ImportDetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

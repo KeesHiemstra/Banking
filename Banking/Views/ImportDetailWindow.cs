@@ -18,11 +18,11 @@ namespace Banking.Views
   /// <summary>
   /// Interaction logic for DetailWindow.xaml
   /// </summary>
-  public partial class DetailWindow : Window
+  public partial class ImportDetailWindow : Window
   {
-    DetailViewModel DetailVM;
+    ImportDetailViewModel DetailVM;
 
-    public DetailWindow(DetailViewModel detail)
+    public ImportDetailWindow(ImportDetailViewModel detail)
     {
       InitializeComponent();
 

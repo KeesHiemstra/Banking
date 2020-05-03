@@ -19,11 +19,11 @@ namespace Banking.Views
   /// <summary>
   /// Interaction logic for AccountWindow.xaml
   /// </summary>
-  public partial class AccountWindow : Window
+  public partial class BankAccountWindow : Window
   {
-    AccountViewModel AccountVM;
+    BankAccountViewModel AccountVM;
 
-    public AccountWindow(AccountViewModel account)
+    public BankAccountWindow(BankAccountViewModel account)
     {
       AccountVM = account;
 

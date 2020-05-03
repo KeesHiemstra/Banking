@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace Banking.ViewModels
 {
-	public class AccountViewModel : INotifyPropertyChanged
+	public class BankAccountViewModel : INotifyPropertyChanged
 	{
 		public Bank Account { get; set; }
 		public List<string> Tallies { get; set; }
@@ -29,7 +29,7 @@ namespace Banking.ViewModels
 			Account = account;
 			Tallies = tallies;
 
-			AccountWindow view = new AccountWindow(this)
+			BankAccountWindow view = new BankAccountWindow(this)
 			{
 				Top = parent.Top + 20,
 				Left = parent.Left + 20
@@ -47,7 +47,12 @@ namespace Banking.ViewModels
 
 		internal bool CanSave()
 		{
-			if (string.IsNullOrEmpty(Account.TallyName) && Account.Mutation == "Incasso")
+			if (Account.Mutation == "Incasso")
+			{
+				return false;
+			}
+
+			if (string.IsNullOrEmpty(Account.TallyName))
 			{
 				return false;
 			}

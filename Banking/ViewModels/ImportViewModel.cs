@@ -39,7 +39,7 @@ namespace Banking.ViewModels
 
     public void OpenImport(Import import)
     {
-      DetailViewModel detailMV = new DetailViewModel();
+      ImportDetailViewModel detailMV = new ImportDetailViewModel();
       detailMV.ShowAccount(View, import);
     }
 

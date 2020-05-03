@@ -4,7 +4,7 @@ using System;
 
 namespace Banking.ViewModels
 {
-  public class DetailViewModel
+  public class ImportDetailViewModel
   {
     public Import Detail { get; set; }
 
@@ -12,7 +12,7 @@ namespace Banking.ViewModels
     {
       Detail = detail;
 
-      DetailWindow view = new DetailWindow(this)
+      ImportDetailWindow view = new ImportDetailWindow(this)
       {
         Top = parent.Top + 20,
         Left = parent.Left + 20

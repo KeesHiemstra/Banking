@@ -124,7 +124,7 @@ namespace Banking.ViewModels
 
     public void OpenAccount(Bank account)
     {
-      AccountViewModel accountMV = new AccountViewModel();
+      BankAccountViewModel accountMV = new BankAccountViewModel();
 			bool? Result = accountMV.ShowAccount(View, account, Tallies);
 
 			if ((bool)Result)
