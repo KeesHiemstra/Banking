@@ -1,4 +1,4 @@
-﻿using Banking.ModelViews;
+﻿using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +20,19 @@ namespace Banking.Views
   /// </summary>
   public partial class DetailWindow : Window
   {
-    public DetailWindow(DetailModelView detail)
+    DetailViewModel DetailVM;
+
+    public DetailWindow(DetailViewModel detail)
     {
       InitializeComponent();
 
-      DataContext = detail;
+      DetailVM = detail;
+      DataContext = DetailVM;
     }
 
     private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-      e.CanExecute = true;
+      e.CanExecute = DetailVM.CanSave();
     }
 
     private void SaveCommand_Execute(object sender, ExecutedRoutedEventArgs e)

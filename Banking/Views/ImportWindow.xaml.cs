@@ -1,5 +1,5 @@
 ﻿using Banking.Models;
-using Banking.ModelViews;
+using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +21,9 @@ namespace Banking.Views
   /// </summary>
   public partial class ImportWindow : Window
   {
-    private ImportModelView ModelView;
+    private ImportViewModel ModelView;
 
-    public ImportWindow(ImportModelView modelView)
+    public ImportWindow(ImportViewModel modelView)
     {
       InitializeComponent();
 

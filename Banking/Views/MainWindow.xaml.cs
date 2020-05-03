@@ -1,5 +1,5 @@
 ﻿using Banking.Models;
-using Banking.ModelViews;
+using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +23,7 @@ namespace Banking
   /// </summary>
   public partial class MainWindow : Window
   {
-    public static MainModelView MainMV;
+    public static MainViewModel MainMV;
 
     public MainWindow()
     {
@@ -32,7 +32,7 @@ namespace Banking
 
       Title = $"Banking ({System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()})";
 
-      MainMV = new MainModelView(this);
+      MainMV = new MainViewModel(this);
       DataContext = MainMV;
 
 		}

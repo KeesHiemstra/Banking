@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using CHi.Extensions;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-  public class OptionModelView : INotifyPropertyChanged
+  public class OptionViewModel : INotifyPropertyChanged
   {
 
     #region [ Fields ]

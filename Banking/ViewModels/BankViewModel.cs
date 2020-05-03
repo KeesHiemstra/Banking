@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class BankModelView : INotifyPropertyChanged
+	public class BankViewModel : INotifyPropertyChanged
   {
 		private BankingDbContext db;
 		private bool HasMissedTallies;
@@ -17,7 +17,7 @@ namespace Banking.ModelViews
 		public BankingDbContext Db { get => db; set => db = value; }
 		private ObservableCollection<Bank> Accounts { get; set; }
 		private ObservableCollection<Bank> FilteredAccounts { get; set; }
-		private readonly OptionModelView Options;
+		private readonly OptionViewModel Options;
 
     public List<string> Tallies { get; set; } = new List<string>();
 		public string AccountFilter { get; set; }
@@ -32,7 +32,7 @@ namespace Banking.ModelViews
 			}
 		}
 
-		public BankModelView(OptionModelView options, MainWindow parent, bool hasMissedTallies = false)
+		public BankViewModel(OptionViewModel options, MainWindow parent, bool hasMissedTallies = false)
     {
       Options = options;
 			HasMissedTallies = hasMissedTallies;
@@ -52,7 +52,7 @@ namespace Banking.ModelViews
 
 		}
 
-		public BankModelView(OptionModelView options, OverviewWindow parent, string tallyName, string month)
+		public BankViewModel(OptionViewModel options, OverviewWindow parent, string tallyName, string month)
 		{
 			Options = options;
 
@@ -124,7 +124,7 @@ namespace Banking.ModelViews
 
     public void OpenAccount(Bank account)
     {
-      AccountModelView accountMV = new AccountModelView();
+      AccountViewModel accountMV = new AccountViewModel();
 			bool? Result = accountMV.ShowAccount(View, account, Tallies);
 
 			if ((bool)Result)

@@ -9,9 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public partial class MainModelView : INotifyPropertyChanged
+	public partial class MainViewModel : INotifyPropertyChanged
 	{
 		private static readonly Dictionary<string, string> ImportFileFilters =
 			new Dictionary<string, string>();
@@ -54,7 +54,7 @@ namespace Banking.ModelViews
 
 			try
 			{
-				_ = new ImportABNModelView(fileName, Options);
+				_ = new ImportABNViewModel(fileName, Options);
 			}
 			catch (Exception ex)
 			{
@@ -85,7 +85,7 @@ namespace Banking.ModelViews
 				return;
 			}
 
-			_ = new ImportINGModelView(fileName, Options);
+			_ = new ImportINGViewModel(fileName, Options);
 			await GetImportSummaryAsync();
 			NotifyPropertyChanged("Imports");
 
@@ -96,7 +96,7 @@ namespace Banking.ModelViews
 		public async Task ProcessImportTableAsync()
 		{
 
-			ImportProcessModelView import = new ImportProcessModelView(Options, this);
+			ImportProcessViewModel import = new ImportProcessViewModel(Options, this);
 
 			//Step 1: Import the data from Import table to Bank table.
 
@@ -154,7 +154,7 @@ namespace Banking.ModelViews
 				return;
 			}
 
-			_ = new ImportOVCardModelView(fileName, Options);
+			_ = new ImportOVCardViewModel(fileName, Options);
 
 		}
 		#endregion

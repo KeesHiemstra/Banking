@@ -1,5 +1,5 @@
 ﻿using Banking.Models;
-using Banking.ModelViews;
+using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +21,16 @@ namespace Banking.Views
 	/// </summary>
 	public partial class BalanceWindow : Window
 	{
-		public MainModelView MainMV { get; set; }
-		public BalanceModelView BalanceMV { get; set; } 
+		public MainViewModel MainMV { get; set; }
+		public BalanceViewModel BalanceMV { get; set; } 
 
-		public BalanceWindow(MainModelView mainModelView )
+		public BalanceWindow(MainViewModel mainModelView )
 		{
 
 			InitializeComponent();
 
 			MainMV = mainModelView;
-			BalanceMV = new BalanceModelView(MainMV, this);
+			BalanceMV = new BalanceViewModel(MainMV, this);
 			Top = MainMV.View.Top + 20;
 			Left = MainMV.View.Left + 20;
 
@@ -44,7 +44,7 @@ namespace Banking.Views
 		{
 
 			int selectedBalance = (int)((ComboBox)sender).SelectedIndex;
-			if (selectedBalance >= 0 && selectedBalance < BalanceMV.MainMV.Balances.Count)
+			if (selectedBalance >= 0 && selectedBalance < BalanceMV.MainVM.Balances.Count)
 			{
 				BalanceMV.SelectBalance(selectedBalance);
 			}

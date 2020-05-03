@@ -6,14 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class ImportOVCardModelView
+	public class ImportOVCardViewModel
 	{
 		private string defaultCardNumber;
 		private List<OVCard> Cache = new List<OVCard>();
 
-		public ImportOVCardModelView(string fileName, OptionModelView options)
+		public ImportOVCardViewModel(string fileName, OptionViewModel options)
 		{
 			int CountRecords = 0;
 			defaultCardNumber = options.DefaultCardNumber;

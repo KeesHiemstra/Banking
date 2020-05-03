@@ -1,18 +1,20 @@
 ﻿using Banking.Models;
 using Banking.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class AccountModelView : INotifyPropertyChanged
+	public class AccountViewModel : INotifyPropertyChanged
 	{
 		public Bank Account { get; set; }
 		public List<string> Tallies { get; set; }
 
-		public event PropertyChangedEventHandler PropertyChanged;
+    #region [ Method ]
+    public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(string propertyName = "")
 		{
 			if (PropertyChanged != null)
@@ -20,8 +22,9 @@ namespace Banking.ModelViews
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+    #endregion
 
-		public bool? ShowAccount(BankWindow parent, Bank account, List<string> tallies)
+    public bool? ShowAccount(BankWindow parent, Bank account, List<string> tallies)
 		{
 			Account = account;
 			Tallies = tallies;
@@ -42,5 +45,14 @@ namespace Banking.ModelViews
 			return view.ShowDialog();
 		}
 
+		internal bool CanSave()
+		{
+			if (string.IsNullOrEmpty(Account.TallyName) && Account.Mutation == "Incasso")
+			{
+				return false;
+			}
+
+			return true;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:Banking"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:vm="clr-namespace:Banking.ModelViews"
+	xmlns:vm="clr-namespace:Banking.ViewModels"
 	Title="Banking"
 	Width="800"
 	Height="450"
@@ -82,7 +82,7 @@
 
   <Grid>
     <Grid.Resources>
-      <vm:OptionModelView x:Key="Options" />
+      <vm:OptionViewModel x:Key="Options" />
     </Grid.Resources>
 
     <Grid.ColumnDefinitions>

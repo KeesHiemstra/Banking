@@ -1,4 +1,4 @@
-﻿using Banking.ModelViews;
+﻿using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +20,13 @@ namespace Banking.Views
 	/// </summary>
 	public partial class OVCardList : Window
 	{
-		OVCardModelView CardMV { get; set; }
+		OVCardViewModel CardMV { get; set; }
 
-		public OVCardList(OptionModelView options)
+		public OVCardList(OptionViewModel options)
 		{
 			InitializeComponent();
 
-			CardMV = new OVCardModelView(options, this);
+			CardMV = new OVCardViewModel(options, this);
 			OVCardDataGrid.ItemsSource = CardMV.Cards;
 		}
 

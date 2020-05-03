@@ -1,4 +1,4 @@
-﻿using Banking.ModelViews;
+﻿using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +20,9 @@ namespace Banking.Views
 	/// </summary>
 	public partial class EditBalanceWindow : Window
 	{
-		public BalanceModelView BalanceMV { get; set; }
+		public BalanceViewModel BalanceMV { get; set; }
 
-		public EditBalanceWindow(BalanceModelView balanceModelView)
+		public EditBalanceWindow(BalanceViewModel balanceModelView)
 		{
 			InitializeComponent();
 

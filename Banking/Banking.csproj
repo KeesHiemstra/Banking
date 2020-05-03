@@ -101,19 +101,19 @@
     <Compile Include="Models\OVCard.cs" />
     <Compile Include="Models\Overview.cs" />
     <Compile Include="Models\OVTravel.cs" />
-    <Compile Include="ViewModels\AccountModelView.cs" />
-    <Compile Include="ViewModels\BalanceModelView.cs" />
-    <Compile Include="ViewModels\BankModelView.cs" />
-    <Compile Include="ViewModels\DetailModelView.cs" />
-    <Compile Include="ViewModels\ImportABNModelView.cs" />
-    <Compile Include="ViewModels\ImportINGModelView.cs" />
-    <Compile Include="ViewModels\ImportModelView.cs" />
-    <Compile Include="ViewModels\ImportOVCardModelView.cs" />
-    <Compile Include="ViewModels\ImportProcessModelView.cs" />
-    <Compile Include="ViewModels\ImportProcessModelView_SQL.cs" />
-    <Compile Include="ViewModels\MainModelView_Import.cs" />
-    <Compile Include="ViewModels\OVCardModelView.cs" />
-    <Compile Include="ViewModels\OverviewModelView.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\BalanceViewModel.cs" />
+    <Compile Include="ViewModels\BankViewModel.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\ImportABNViewModel.cs" />
+    <Compile Include="ViewModels\ImportINGViewModel.cs" />
+    <Compile Include="ViewModels\ImportViewModel.cs" />
+    <Compile Include="ViewModels\ImportOVCardViewModel.cs" />
+    <Compile Include="ViewModels\ImportProcessViewModel.cs" />
+    <Compile Include="ViewModels\ImportProcessViewModel_SQL.cs" />
+    <Compile Include="ViewModels\MainViewModel_Import.cs" />
+    <Compile Include="ViewModels\OVCardViewModel.cs" />
+    <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,8 +186,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\MainWindowCommands.cs" />
-    <Compile Include="ViewModels\MainModelView.cs" />
-    <Compile Include="ViewModels\OptionModelView.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

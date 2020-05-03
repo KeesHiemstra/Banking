@@ -5,11 +5,11 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class OverviewModelView : INotifyPropertyChanged
+	public class OverviewViewModel : INotifyPropertyChanged
 	{
-		private MainModelView MainMV;
+		private MainViewModel MainVM;
 		private OverviewWindow View;
 
 		private List<string> Tallies { get; set; } = new List<string>();
@@ -41,11 +41,11 @@ namespace Banking.ModelViews
 		#region ctor
 		//public OverviewModelView() { }
 
-		public OverviewModelView(OverviewWindow view, MainModelView mainModelView)
+		public OverviewViewModel(OverviewWindow view, MainViewModel mainViewModel)
 		{
 
-			MainMV = mainModelView;
-			if (MainMV.HasMissedTallies) { return; }
+			MainVM = mainViewModel;
+			if (MainVM.HasMissedTallies) { return; }
 
 			View = view;
 
@@ -55,7 +55,7 @@ namespace Banking.ModelViews
 		public void FilterAccountList(string TallyName, string Month)
 		{
 
-			_ = new BankModelView(MainMV.Options, View, TallyName, Month);
+			_ = new BankViewModel(MainVM.Options, View, TallyName, Month);
 
 		}
 
@@ -74,7 +74,7 @@ namespace Banking.ModelViews
 					Pivot = GetPivot(false, "Persoonlijk");
 					break;
 				case OverviewItem.VariableExpenses:
-					Tallies = MainMV.Accounts
+					Tallies = MainVM.Accounts
 						.Where(x => x.Origin is null)
 						.Select(x => x.TallyName)
 						.OrderBy(x => x)
@@ -88,7 +88,7 @@ namespace Banking.ModelViews
 					Pivot = GetPivot(true, "Inkomen gezamenlijk");
 					break;
 				case OverviewItem.All:
-					Tallies = MainMV.Accounts
+					Tallies = MainVM.Accounts
 						.Select(x => x.TallyName)
 						.OrderBy(x => x)
 						.Distinct()
@@ -139,7 +139,7 @@ namespace Banking.ModelViews
 		/// <returns></returns>
 		private List<string> GetTallies(bool isPositiveAmounts, string originName)
 		{
-			return MainMV.Accounts
+			return MainVM.Accounts
 				.Where(x => originName == "Alles" ? (x.Amount != 0) :
 					(isPositiveAmounts ? (x.Amount > 0) :
 						(x.Amount < 0 && (originName == "Onverwacht" ? x.Origin is null : x.Origin == originName))))
@@ -158,7 +158,7 @@ namespace Banking.ModelViews
 		private List<(string Month, string Tally, decimal SumAmount)> GetPivot(bool isPositiveAmounts, string originName)
 		{
 
-			List<(string Month, string Tally, decimal SumAmount)> result = MainMV.Accounts
+			List<(string Month, string Tally, decimal SumAmount)> result = MainVM.Accounts
 				.Where(x => originName == "Alles" ? (x.Amount != 0) :
 					(isPositiveAmounts ? (x.Amount > 0) :
 						(x.Amount < 0 && (originName == "Onverwacht" ? x.Origin is null : x.Origin == originName))))

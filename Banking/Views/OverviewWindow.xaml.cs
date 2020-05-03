@@ -1,4 +1,4 @@
-﻿using Banking.ModelViews;
+﻿using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,22 +21,22 @@ namespace Banking.Views
 	/// </summary>
 	public partial class OverviewWindow : Window
 	{
-		OverviewModelView OverviewMV { get; set; }
+		OverviewViewModel OverviewMV { get; set; }
 
-		public OverviewWindow(MainModelView mainMV)
+		public OverviewWindow(MainViewModel mainMV)
 		{
 			InitializeComponent();
 
-			OverviewMV = new OverviewModelView(this, mainMV);
+			OverviewMV = new OverviewViewModel(this, mainMV);
 			OverviewsComboBox.ItemsSource = OverviewMV.Overviews;
-			OverviewsComboBox.SelectedIndex = (int)OverviewModelView.OverviewItem.CommonlyExpenses;
+			OverviewsComboBox.SelectedIndex = (int)OverviewViewModel.OverviewItem.CommonlyExpenses;
 
 			_ = ShowDialog();
 		}
 
 		private void OverviewsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			OverviewModelView.OverviewItem selectedOverview = (OverviewModelView.OverviewItem)((ComboBox)sender).SelectedIndex;
+			OverviewViewModel.OverviewItem selectedOverview = (OverviewViewModel.OverviewItem)((ComboBox)sender).SelectedIndex;
 			OverviewMV.SelectOverview(selectedOverview);
 		}
 

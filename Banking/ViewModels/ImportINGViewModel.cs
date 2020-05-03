@@ -6,14 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class ImportINGModelView
+	public class ImportINGViewModel
 	{
 
 		private List<Import> Cache = new List<Import>();
 
-		public ImportINGModelView(string fileName, OptionModelView options)
+		public ImportINGViewModel(string fileName, OptionViewModel options)
 		{
 			if (ImportFile(fileName))
 			{

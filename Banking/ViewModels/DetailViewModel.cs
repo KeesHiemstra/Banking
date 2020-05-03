@@ -1,9 +1,10 @@
 ﻿using Banking.Models;
 using Banking.Views;
+using System;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-  public class DetailModelView
+  public class DetailViewModel
   {
     public Import Detail { get; set; }
 
@@ -25,8 +26,9 @@ namespace Banking.ModelViews
       }
     }
 
-
-
-
+    internal bool CanSave()
+    {
+      return !string.IsNullOrEmpty(Detail.Mutation);
+    }
   }
 }

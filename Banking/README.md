@@ -7,6 +7,8 @@
 - [ ] Bug: Pivot is not updated when a record is updated.
 - [ ] Bug: Previous account list when the cell is empty.
 - [ ] Processing the import has one item that not was done. Maybe to the import twice automatically.
+- [ ] DetailWindow: Disable the Save button when tally is not filled.
+- [X] Renamed all ViewModels correct.
 - [X] Collect the backup files per date folder. 
 - [X] Make a splash screen.
 - [X] Write the hard coded SQL statements in a extern json.

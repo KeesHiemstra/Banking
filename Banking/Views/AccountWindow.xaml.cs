@@ -1,5 +1,5 @@
 ﻿using Banking.Models;
-using Banking.ModelViews;
+using Banking.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +21,21 @@ namespace Banking.Views
   /// </summary>
   public partial class AccountWindow : Window
   {
-    public AccountWindow(AccountModelView account)
+    AccountViewModel AccountVM;
+
+    public AccountWindow(AccountViewModel account)
     {
+      AccountVM = account;
+
       InitializeComponent();
 
       CancelButton.Focus();
-      DataContext = account;
+      DataContext = AccountVM;
     }
 
     private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-      e.CanExecute = true;
+      e.CanExecute = AccountVM.CanSave();
     }
 
     private void SaveCommand_Execute(object sender, ExecutedRoutedEventArgs e)

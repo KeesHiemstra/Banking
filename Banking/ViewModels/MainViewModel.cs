@@ -13,9 +13,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public partial class MainModelView : INotifyPropertyChanged
+	public partial class MainViewModel : INotifyPropertyChanged
 	{
 		public MainWindow View;
 		private bool hasMissedTallies;
@@ -29,7 +29,7 @@ namespace Banking.ModelViews
 
 		#region [ Properties ] 
 
-		public OptionModelView Options { get; set; }
+		public OptionViewModel Options { get; set; }
     public ObservableCollection<Bank> Accounts { get; set; } = new ObservableCollection<Bank>();
     public ObservableCollection<Import> Imports { get; set; } = new ObservableCollection<Import>();
     public bool ToSaveBalances { get; set; } = false;
@@ -136,11 +136,11 @@ namespace Banking.ModelViews
 		}
 		#endregion
 
-		public MainModelView(MainWindow mainWindow)
+		public MainViewModel(MainWindow mainWindow)
 		{
 			View = mainWindow;
 
-			Options = new OptionModelView();
+			Options = new OptionViewModel();
 			SetDbConnection();
 
 			if (Options.DbName != "_")
@@ -216,7 +216,7 @@ namespace Banking.ModelViews
 				using (StreamReader stream = File.OpenText(Options.JsonPath))
 				{
 					string json = stream.ReadToEnd();
-					Options = JsonConvert.DeserializeObject<OptionModelView>(json);
+					Options = JsonConvert.DeserializeObject<OptionViewModel>(json);
 				}
 			}
 
@@ -224,12 +224,12 @@ namespace Banking.ModelViews
 
 		public void ShowBankList()
 		{
-			_ = new BankModelView(Options, View);
+			_ = new BankViewModel(Options, View);
 		}
 
 		public void ShowImportList()
 		{
-			_ = new ImportModelView(Options, View);
+			_ = new ImportViewModel(Options, View);
 		}
 
 		public async Task ShowOverviewAsync()
@@ -241,7 +241,7 @@ namespace Banking.ModelViews
 
 			if (missed.Count > 0)
 			{
-				_ = new BankModelView(Options, View, true);
+				_ = new BankViewModel(Options, View, true);
 
 				await GetAccountSummaryAsync();
 
@@ -267,7 +267,7 @@ namespace Banking.ModelViews
 
 			if (missed.Count > 0)
 			{
-				_ = new BankModelView(Options, View, true);
+				_ = new BankViewModel(Options, View, true);
 
 				_ = GetAccountSummaryAsync();
 

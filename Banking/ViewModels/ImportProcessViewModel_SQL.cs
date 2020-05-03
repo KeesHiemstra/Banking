@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public partial class ImportProcessModelView
+	public partial class ImportProcessViewModel
 	{
 		public Dictionary<string, string> ImportToBank { get; private set; } = 
 			new Dictionary<string, string>();

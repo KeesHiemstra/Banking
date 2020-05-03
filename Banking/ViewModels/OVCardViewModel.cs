@@ -3,16 +3,16 @@ using Banking.Views;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class OVCardModelView
+	public class OVCardViewModel
 	{
-		public OptionModelView Options { get; set; }
+		public OptionViewModel Options { get; set; }
 		public OVCardList ListView { get; set; }
 		public List<OVCard> Cards { get; set; }
 
 
-		public OVCardModelView(OptionModelView options, OVCardList listView)
+		public OVCardViewModel(OptionViewModel options, OVCardList listView)
 		{
 			Options = options;
 			ListView = listView;

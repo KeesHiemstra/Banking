@@ -2,14 +2,17 @@
 using Banking.Views;
 using System;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class BalanceModelView
+	public class BalanceViewModel
 	{
-		private EditBalanceWindow EditBalanceView { get; set; }
+    #region [ Fields ]
+    private EditBalanceWindow EditBalanceView { get; set; }
 		private BalanceAmount CurrentAmount;
+    #endregion
 
-		public MainModelView MainMV { get; set; }
+    #region [ Properties ]
+    public MainViewModel MainVM { get; set; }
 		public BalanceWindow BalanceView { get; set; }
 
 		public bool AddAccount { get; set; }
@@ -18,11 +21,12 @@ namespace Banking.ModelViews
 		public string EditAccount { get; set; }
 		public DateTime EditDate { get; set; }
 		public decimal? EditAmount { get; set; }
+    #endregion
 
-		public BalanceModelView(MainModelView mainMV, BalanceWindow balanceWindow)
+    public BalanceViewModel(MainViewModel mainVM, BalanceWindow balanceWindow)
 		{
 
-			MainMV = mainMV;
+			MainVM = mainVM;
 			BalanceView = balanceWindow;
 
 		}
@@ -32,9 +36,9 @@ namespace Banking.ModelViews
 
 			SelectedBalance = selectBalance;
 
-			if (MainMV.Balances.Count > 0)
+			if (MainVM.Balances.Count > 0)
 			{
-				BalanceView.BalanceAmountDataGrid.ItemsSource = MainMV.Balances[selectBalance].Amounts;
+				BalanceView.BalanceAmountDataGrid.ItemsSource = MainVM.Balances[selectBalance].Amounts;
 			}
 
 			return selectBalance;
@@ -46,23 +50,23 @@ namespace Banking.ModelViews
 
 			if (AddAccount)
 			{
-				MainMV.Balances.Add(new Models.Balance { Name = EditAccount });
-				MainMV.ToSaveBalances = true;
-				SelectedBalance = MainMV.Balances.Count - 1;
+				MainVM.Balances.Add(new Models.Balance { Name = EditAccount });
+				MainVM.ToSaveBalances = true;
+				SelectedBalance = MainVM.Balances.Count - 1;
 				SelectBalance(SelectedBalance);
 			}
 
-			if (MainMV.Balances[SelectedBalance].Name != EditAccount)
+			if (MainVM.Balances[SelectedBalance].Name != EditAccount)
 			{
-				MainMV.Balances[SelectedBalance].Name = EditAccount;
-				MainMV.ToSaveBalances = true;
+				MainVM.Balances[SelectedBalance].Name = EditAccount;
+				MainVM.ToSaveBalances = true;
 			}
 
 			if (!string.IsNullOrEmpty(EditAmount.ToString()) )
 			{
 				if (AddBalance)
 				{
-					MainMV.Balances[SelectedBalance].Amounts.Add(new Models.BalanceAmount
+					MainVM.Balances[SelectedBalance].Amounts.Add(new Models.BalanceAmount
 					{
 						Date = EditDate.Date,
 						Amount = EditAmount.Value
@@ -73,12 +77,12 @@ namespace Banking.ModelViews
 					CurrentAmount.Date = EditDate.Date;
 					CurrentAmount.Amount = EditAmount.Value;
 				}
-				MainMV.ToSaveBalances = true;
+				MainVM.ToSaveBalances = true;
 			}
 
-			if (MainMV.ToSaveBalances)
+			if (MainVM.ToSaveBalances)
 			{
-				MainMV.GetCurrentBalances();
+				MainVM.GetCurrentBalances();
 			}
 
 			EditBalanceView.Close();
@@ -131,7 +135,7 @@ namespace Banking.ModelViews
 			}
 			else
 			{
-				EditAccount = MainMV.Balances[SelectedBalance].Name;
+				EditAccount = MainVM.Balances[SelectedBalance].Name;
 			}
 
 			if (newBalence)

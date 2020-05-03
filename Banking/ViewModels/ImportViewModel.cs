@@ -3,15 +3,15 @@ using Banking.Views;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-  public class ImportModelView
+  public class ImportViewModel
   {
     private ImportWindow View { get; set; }
 
-    private readonly OptionModelView Options;
+    private readonly OptionViewModel Options;
 
-    public ImportModelView(OptionModelView options, MainWindow parent)
+    public ImportViewModel(OptionViewModel options, MainWindow parent)
     {
       Options = options;
 
@@ -39,7 +39,7 @@ namespace Banking.ModelViews
 
     public void OpenImport(Import import)
     {
-      DetailModelView detailMV = new DetailModelView();
+      DetailViewModel detailMV = new DetailViewModel();
       detailMV.ShowAccount(View, import);
     }
 

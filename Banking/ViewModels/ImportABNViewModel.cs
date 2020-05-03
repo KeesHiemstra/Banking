@@ -6,20 +6,20 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public class ImportABNModelView
+	public class ImportABNViewModel
 	{
 		private List<Import> Cache = new List<Import>();
 
-		public ImportABNModelView(string fileName, OptionModelView options)
+		public ImportABNViewModel(string fileName, OptionViewModel options)
 		{
 
 			ProcessImportABNModelView(fileName, options);
 
 		}
 
-		private void ProcessImportABNModelView(string fileName, OptionModelView options)
+		private void ProcessImportABNModelView(string fileName, OptionViewModel options)
 		{
 
 			if (ImportFile(fileName))

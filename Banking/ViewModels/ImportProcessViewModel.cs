@@ -6,18 +6,18 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Banking.ModelViews
+namespace Banking.ViewModels
 {
-	public partial class ImportProcessModelView
+	public partial class ImportProcessViewModel
 	{
-		private OptionModelView Options { get; }
-		private MainModelView MainMV { get; }
+		private OptionViewModel Options { get; }
+		private MainViewModel MainVM { get; }
 		private int MissedTalliesCount;
 
-		public ImportProcessModelView(OptionModelView options, MainModelView mainMV)
+		public ImportProcessViewModel(OptionViewModel options, MainViewModel mainVM)
 		{
 			Options = options;
-			MainMV = mainMV;
+			MainVM = mainVM;
 
 			ProcessImportToBankAsync();
 			ProcessMissedTallies();
@@ -28,7 +28,7 @@ namespace Banking.ModelViews
 		private int CheckMissedTallies()
 		{
 
-			List<Bank> Missed = MainMV.Accounts
+			List<Bank> Missed = MainVM.Accounts
 				.Where(x => x.TallyName is null)
 				.ToList();
 
@@ -86,7 +86,7 @@ namespace Banking.ModelViews
 
 			ImportToBank.Clear();
 
-			await MainMV.GetAccountSummaryAsync();
+			await MainVM.GetAccountSummaryAsync();
 			MissedTalliesCount = CheckMissedTallies();
 			Log($"After ProcessImportToBank() has {MissedTalliesCount} missed tallies");
 
@@ -126,7 +126,7 @@ namespace Banking.ModelViews
 			Log($"Total {totalUpdates} updates");
 			MissedTallies.Clear();
 
-			await MainMV.GetAccountSummaryAsync();
+			await MainVM.GetAccountSummaryAsync();
 			MissedTalliesCount = CheckMissedTallies();
 			Log($"After ProcessImportToBank() has {MissedTalliesCount} missed tallies");
 
