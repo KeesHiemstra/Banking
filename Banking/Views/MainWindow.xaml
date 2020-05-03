@@ -100,7 +100,7 @@
     <Menu
 			Grid.Row="0"
 			Grid.Column="0"
-			Grid.ColumnSpan="3">
+			Grid.ColumnSpan="4">
       <MenuItem Header="_File">
         <MenuItem Command="cmd:MainWindowCommands.Options" />
         <MenuItem Command="cmd:MainWindowCommands.Backup" />
@@ -234,7 +234,7 @@
           <SolidColorBrush Color="LightGray" />
         </Border.BorderBrush>
         <StackPanel Orientation="Vertical">
-          <TextBlock FontWeight="Bold" Text="Niet alle tallies" />
+          <TextBlock FontWeight="Bold" Text="Niet alle tally's" />
           <TextBlock FontWeight="Bold" Text="zijn ingevuld." />
           <StackPanel Orientation="Horizontal">
             <TextBlock Text="Niet ingevuld: " />

@@ -6,7 +6,8 @@
 - [ ] Design an icon.
 - [ ] Bug: Pivot is not updated when a record is updated.
 - [ ] Bug: Previous account list when the cell is empty.
-- [ ] Processing the import has one item that not was done. Maybe to the import twice automatically.
+- [ ] Bug: Processing the import has one item that not was done. Maybe to the import twice automatically.
+- [ ] Bug: Can not acces the Help menu.
 - [X] BankAccountWindow: Disable the Save button when tally is not filled.
 - [X] Rename AccountWindow => BankAccountWindow and AccountViewModel => BankAccountViewModel.
 - [X] Rename DetailWindow => ImportDetailWindow and DetailViewModel => ImportDetailViewModel.
