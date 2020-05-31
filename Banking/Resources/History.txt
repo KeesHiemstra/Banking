@@ -1,3 +1,7 @@
+Version 2.2.0.56 (2020-05-31)
+* Bug fix: The background image block the menu. 
+* Implemented TalliesRulesWindow and TalliesRulesViewModel.
+
 Version 2.1.1.55 (2020-05-03)
 * Disabled the Save button when the [TallyName] is empty or [Mutation] is "Incasso".
 * Renamed AccountWindow => BankAccountWindow and AccountViewModel => BankAccountViewModel.

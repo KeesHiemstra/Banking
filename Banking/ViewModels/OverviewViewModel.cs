@@ -55,7 +55,7 @@ namespace Banking.ViewModels
 		public void FilterAccountList(string TallyName, string Month)
 		{
 
-			_ = new BankViewModel(MainVM.Options, View, TallyName, Month);
+			_ = new BankViewModel(MainVM.Options, View, MainVM, TallyName, Month);
 
 		}
 

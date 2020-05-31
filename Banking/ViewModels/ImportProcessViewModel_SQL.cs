@@ -9,8 +9,7 @@ namespace Banking.ViewModels
 	{
 		public Dictionary<string, string> ImportToBank { get; private set; } = 
 			new Dictionary<string, string>();
-		public Dictionary<string, string> MissedTallies { get; private set; } =
-			new Dictionary<string, string>();
+
 		public Dictionary<string, string> PostImport { get; private set; } =
 			new Dictionary<string, string>();
 
@@ -36,21 +35,6 @@ SET [Month] = CAST(YEAR([Date]) AS varchar(4)) + '-' + RIGHT('0' + CAST(MONTH([D
 FROM Bank
 WHERE [Month] IS NULL
 ");
-
-		}
-
-		private void DictMissedTallies()
-		{
-
-			string MissedTalliesJson = "%OneDrive%\\Data\\Banking\\MissedTallies.json".TranslatePath();
-			if (File.Exists(MissedTalliesJson))
-			{
-				using (StreamReader stream = File.OpenText(MissedTalliesJson))
-				{
-					string json = stream.ReadToEnd();
-					MissedTallies = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-				}
-			}
 
 		}
 

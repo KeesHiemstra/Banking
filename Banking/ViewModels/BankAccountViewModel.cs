@@ -8,56 +8,100 @@ using System.Windows.Media;
 
 namespace Banking.ViewModels
 {
-	public class BankAccountViewModel : INotifyPropertyChanged
-	{
-		public Bank Account { get; set; }
-		public List<string> Tallies { get; set; }
+  public class BankAccountViewModel : INotifyPropertyChanged
+  {
+    #region [ Fields ]
+
+    BankAccountWindow View;
+    MainViewModel MainVM;
+
+    #endregion
+
+    public Bank Account { get; set; }
+    public List<string> Tallies { get; set; }
 
     #region [ Method ]
     public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(string propertyName = "")
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
+    private void NotifyPropertyChanged(string propertyName = "")
+    {
+      if (PropertyChanged != null)
+      {
+        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+    #endregion
+
+    #region [ Construction ]
+
+    public BankAccountViewModel(MainViewModel mainVM)
+    {
+      MainVM = mainVM;
+    }
+
     #endregion
 
     public bool? ShowAccount(BankWindow parent, Bank account, List<string> tallies)
-		{
-			Account = account;
-			Tallies = tallies;
+    {
+      Account = account;
+      Tallies = tallies;
 
-			BankAccountWindow view = new BankAccountWindow(this)
-			{
-				Top = parent.Top + 20,
-				Left = parent.Left + 20
-			};
+      View = new BankAccountWindow(this)
+      {
+        Top = parent.Top + 20,
+        Left = parent.Left + 20
+      };
 
-			if (string.IsNullOrWhiteSpace(Account.TallyName) && Account.Mutation == "Incasso")
-			{
-				view.MutationTextBox.FontWeight = FontWeights.Bold;
-				view.MutationTextBox.Foreground = Brushes.Red;
-			}
+      if (string.IsNullOrWhiteSpace(Account.TallyName) && Account.Mutation == "Incasso")
+      {
+        View.MutationTextBox.FontWeight = FontWeights.Bold;
+        View.MutationTextBox.Foreground = Brushes.Red;
+      }
 
-			view.Owner = parent;
-			return view.ShowDialog();
+      View.Owner = parent;
+      return View.ShowDialog();
+    }
+
+    internal bool CanSave()
+    {
+      if (string.IsNullOrEmpty(Account.Mutation))
+      {
+        return false;
+      }
+
+      if (string.IsNullOrEmpty(Account.TallyName))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    internal bool CanProposal()
+    {
+      if (string.IsNullOrEmpty(Account.TallyName))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    internal void Proposal()
+    {
+      TalliesRulesViewModel missed = new TalliesRulesViewModel((Window)View, MainVM)
+      {
+        SelectedAccount = new Bank()
+        {
+          Account = Account.Account,
+          Mutation = Account.Mutation,
+          Name = Account.Name,
+          CounterAccount = Account.CounterAccount,
+          Text = Account.Text,
+          TallyName = Account.TallyName
+        }
+      };
+
+      missed.ShowTalliesRules();
 		}
-
-		internal bool CanSave()
-		{
-			if (Account.Mutation == "Incasso")
-			{
-				return false;
-			}
-
-			if (string.IsNullOrEmpty(Account.TallyName))
-			{
-				return false;
-			}
-
-			return true;
-		}
-	}
+}
 }

@@ -2,12 +2,12 @@
 
 ### Wish list
 
-- [ ] Make suggestions with SQL statements where are records with an empty "TallyName".
 - [ ] Design an icon.
 - [ ] Bug: Pivot is not updated when a record is updated.
 - [ ] Bug: Previous account list when the cell is empty.
 - [ ] Bug: Processing the import has one item that not was done. Maybe to the import twice automatically.
-- [ ] Bug: Can not acces the Help menu.
+- [X] Bug: Can not access the Help menu, except the first character.
+- [X] Make suggestions with SQL statements where are records with an empty "TallyName".
 - [X] BankAccountWindow: Disable the Save button when tally is not filled.
 - [X] Rename AccountWindow => BankAccountWindow and AccountViewModel => BankAccountViewModel.
 - [X] Rename DetailWindow => ImportDetailWindow and DetailViewModel => ImportDetailViewModel.

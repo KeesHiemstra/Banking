@@ -17,6 +17,14 @@ namespace Banking.Commands
         new InputGestureCollection() { }
       );
 
+    public static readonly RoutedUICommand Proposal = new RoutedUICommand
+      (
+        "_Proposal",
+        "Proposal",
+        typeof(AccountWindowCommands),
+        new InputGestureCollection() { }
+      );
+
     public static readonly RoutedUICommand Cancel = new RoutedUICommand
       (
         "_Cancel",

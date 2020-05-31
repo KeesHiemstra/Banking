@@ -18,47 +18,47 @@ using System.Windows.Shapes;
 
 namespace Banking
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow : Window
-  {
-    public static MainViewModel MainMV;
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		public static MainViewModel MainVM;
 
-    public MainWindow()
-    {
+		public MainWindow()
+		{
 
-      InitializeComponent();
+			InitializeComponent();
 
-      Title = $"Banking ({System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()})";
+			Title = $"Banking ({System.Reflection.Assembly.GetExecutingAssembly().GetName().Version})";
 
-      MainMV = new MainViewModel(this);
-      DataContext = MainMV;
+			MainVM = new MainViewModel(this);
+			DataContext = MainVM;
 
 		}
 
-    #region Exit command
-    private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-      e.CanExecute = true;
-    }
+		#region Exit command
+		private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
 
-    private void ExitCommand_Execute(object sender, ExecutedRoutedEventArgs e)
-    {
-      Application.Current.Shutdown();
-    }
-    #endregion
+		private void ExitCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			Application.Current.Shutdown();
+		}
+		#endregion
 
-    #region Options command
-    private void OptionsCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-      e.CanExecute = true;
-    }
+		#region Options command
+		private void OptionsCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
 
-    private void OptionsCommand_Execute(object sender, ExecutedRoutedEventArgs e)
-    {
-      MainMV.Options.ShowOptions(this);
-    }
+		private void OptionsCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			MainVM.Options.ShowOptions(this);
+		}
 		#endregion
 
 		#region Backup command
@@ -69,32 +69,32 @@ namespace Banking
 
 		private void BackupCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.Backup();
+			MainVM.Backup();
 		}
 		#endregion
 
 		#region Bank list
 		private void BankCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-      e.CanExecute = true;
-    }
+		{
+			e.CanExecute = true;
+		}
 
-    private void BankCommand_Execute(object sender, ExecutedRoutedEventArgs e)
-    {
-      MainMV.ShowBankList();
-    }
-    #endregion
+		private void BankCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			MainVM.ShowBankList();
+		}
+		#endregion
 
-    #region Import list
-    private void ImportCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-      e.CanExecute = true;
-    }
+		#region Import list
+		private void ImportCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
 
-    private void ImportCommand_Execute(object sender, ExecutedRoutedEventArgs e)
-    {
-      MainMV.ShowImportList();
-    }
+		private void ImportCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			MainVM.ShowImportList();
+		}
 		#endregion
 
 		#region Overview
@@ -105,7 +105,7 @@ namespace Banking
 
 		private void OverviewCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ShowOverview();
+			MainVM.ShowOverview();
 		}
 		#endregion
 
@@ -117,7 +117,7 @@ namespace Banking
 
 		private void ImportABNCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ImportABNFileAsync();
+			MainVM.ImportABNFileAsync();
 		}
 		#endregion
 
@@ -129,19 +129,19 @@ namespace Banking
 
 		private void ImportINGCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ImportINGFileAsync();
+			MainVM.ImportINGFileAsync();
 		}
 		#endregion
 
 		#region Process import table
 		private void ProcessImportTableCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
-			e.CanExecute = MainMV.ImportCount > 0;
+			e.CanExecute = MainVM.ImportCount > 0;
 		}
 
 		private void ProcessImportTableCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ProcessImportTableAsync();
+			MainVM.ProcessImportTableAsync();
 		}
 		#endregion
 
@@ -153,7 +153,19 @@ namespace Banking
 
 		private void ClearImportTableCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ClearImportTable();
+			MainVM.ClearImportTable();
+		}
+		#endregion
+
+		#region Missed tallies
+		private void MissedTalliesCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+
+		private void MissedTalliesCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			MainVM.ShowTalliesRules();
 		}
 		#endregion
 
@@ -165,7 +177,7 @@ namespace Banking
 
 		private void BalanceCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ShowBalances();
+			MainVM.ShowBalances();
 		}
 		#endregion
 
@@ -177,7 +189,7 @@ namespace Banking
 
 		private void ImportOVCardCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ImportOVCardFile();
+			MainVM.ImportOVCardFile();
 		}
 		#endregion
 
@@ -189,21 +201,21 @@ namespace Banking
 
 		private void OVCardListCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ShowOVCardList();
+			MainVM.ShowOVCardList();
 		}
-    #endregion
+		#endregion
 
-    #region History
-    private void HistoryCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		#region History
+		private void HistoryCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = true;
 		}
 
 		private void HistoryCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ShowHistory();
+			MainVM.ShowHistory();
 		}
-    #endregion
+		#endregion
 
 		#region Last backup
 		private void LastBackupCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -213,13 +225,18 @@ namespace Banking
 
 		private void LastBackupCommand_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			MainMV.ShowLastBackup();
+			MainVM.ShowLastBackup();
 		}
 		#endregion
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			MainMV.CloseWindow();
+      if (MainVM.TalliesRulesChanged)
+      {
+				MainVM.SaveTalliesRules();
+			}
+
+			MainVM.CloseWindow();
 		}
 
 	}

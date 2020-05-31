@@ -40,7 +40,17 @@ namespace Banking.Views
 
     private void SaveCommand_Execute(object sender, ExecutedRoutedEventArgs e)
     {
-			DialogResult = true;
+      DialogResult = true;
+    }
+
+    private void ProposalCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+      e.CanExecute = AccountVM.CanProposal();
+    }
+
+    private void ProposalCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+    {
+      AccountVM.Proposal();
     }
 
     private void CancelCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -50,10 +60,9 @@ namespace Banking.Views
 
     private void CancelCommand_Execute(object sender, ExecutedRoutedEventArgs e)
     {
-      
+
       DialogResult = false;
     }
-
 
   }
 }

@@ -100,11 +100,14 @@ namespace Banking.ViewModels
 
 			Log($"Start ProcessMissedTallies() with {CheckMissedTallies()} missed tallies");
 
-			DictMissedTallies();
+      if (MainVM.TalliesRules.Count == 0)
+      {
+        MainVM.ReadTalliesRules();
+      }
 
 			using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
 			{
-				foreach (var item in MissedTallies)
+				foreach (var item in MainVM.TalliesRules)
 				{
 					try
 					{
@@ -124,7 +127,7 @@ namespace Banking.ViewModels
 			}
 
 			Log($"Total {totalUpdates} updates");
-			MissedTallies.Clear();
+			//MainVM.TalliesRules.Clear();
 
 			await MainVM.GetAccountSummaryAsync();
 			MissedTalliesCount = CheckMissedTallies();

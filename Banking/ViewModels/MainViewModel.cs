@@ -224,7 +224,7 @@ namespace Banking.ViewModels
 
 		public void ShowBankList()
 		{
-			_ = new BankViewModel(Options, View);
+			_ = new BankViewModel(Options, View, this);
 		}
 
 		public void ShowImportList()
@@ -241,7 +241,7 @@ namespace Banking.ViewModels
 
 			if (missed.Count > 0)
 			{
-				_ = new BankViewModel(Options, View, true);
+				_ = new BankViewModel(Options, View, this, true);
 
 				await GetAccountSummaryAsync();
 
@@ -267,7 +267,7 @@ namespace Banking.ViewModels
 
 			if (missed.Count > 0)
 			{
-				_ = new BankViewModel(Options, View, true);
+				_ = new BankViewModel(Options, View, this, true);
 
 				_ = GetAccountSummaryAsync();
 
@@ -412,11 +412,11 @@ namespace Banking.ViewModels
         File.Copy(BALANCE, backupFile);
       }
 
-			backupFile = $"{backupFolder}\\MissedTallies.json";
-			string MissingTalliesJson = "%OneDrive%\\Data\\Banking\\MissedTallies.json".TranslatePath();
-			if (File.Exists(MissingTalliesJson))
+			backupFile = $"{backupFolder}\\TalliesRules.json";
+			string TalliesRulesJson = "%OneDrive%\\Data\\Banking\\TalliesRules.json".TranslatePath();
+			if (File.Exists(TalliesRulesJson))
 			{
-				File.Copy(MissingTalliesJson, backupFile);
+				File.Copy(TalliesRulesJson, backupFile);
 			}
 
 			MessageBox.Show($"Backup created successful", 
@@ -463,6 +463,13 @@ namespace Banking.ViewModels
 			}
 
 		}
+
+		internal void ShowTalliesRules()
+		{
+			TalliesRulesViewModel missed = new TalliesRulesViewModel((Window)View, this);
+			missed.ShowTalliesRules();
+		}
+
 
 	}
 }

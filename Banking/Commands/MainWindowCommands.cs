@@ -109,6 +109,14 @@ namespace Banking.Commands
 			new InputGestureCollection() { }
 		);
 
+		public static readonly RoutedUICommand TalliesRules = new RoutedUICommand
+		(
+			"_Tally's regels lijst",
+			"MissedTallies",
+			typeof(MainWindowCommands),
+			new InputGestureCollection() { }
+		);
+
 		public static readonly RoutedUICommand ImportOVCard = new RoutedUICommand
 		(
 			"_Import OV-Card file",

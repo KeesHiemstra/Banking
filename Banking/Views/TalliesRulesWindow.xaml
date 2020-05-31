@@ -1,0 +1,129 @@
+﻿<Window
+  x:Class="Banking.Views.TalliesRulesWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:cmd="clr-namespace:Banking.Commands"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:Banking"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Title="Tallies rules"
+  Width="800"
+  Height="450"
+  mc:Ignorable="d">
+  <Window.CommandBindings>
+    <CommandBinding
+      CanExecute="CloseCommand_CanExecute"
+      Command="cmd:TalliesRulesWindowCommands.Close"
+      Executed="CloseCommand_Execute" />
+    <CommandBinding
+      CanExecute="AddCommand_CanExecute"
+      Command="cmd:TalliesRulesWindowCommands.Add"
+      Executed="AddCommand_Execute" />
+    <CommandBinding
+      CanExecute="SaveCommand_CanExecute"
+      Command="cmd:TalliesRulesWindowCommands.Save"
+      Executed="SaveCommand_Execute" />
+  </Window.CommandBindings>
+
+  <Grid Margin="5">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="250" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <ListBox
+      Name="TalliesRulesListBox"
+      Grid.RowSpan="3"
+      Margin="0,0,5,0"
+      SelectionChanged="TalliesRulesListBox_SelectionChanged">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding Key}" />
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <Label
+      Grid.Row="0"
+      Grid.Column="1"
+      Content="Tally full name: " />
+
+    <TextBox
+      Name="FullTallyNameTextBox"
+      Grid.Row="0"
+      Grid.Column="2"
+      Margin="0,0,0,5"
+      Text="{Binding FullTallyName}"
+      TextChanged="FullTallyNameTextBox_TextChanged" />
+
+    <Label
+      Grid.Row="2"
+      Grid.Column="1"
+      Content="SQL: " />
+
+    <TextBox
+      Name="SQLTextBox"
+      Grid.Row="2"
+      Grid.Column="2"
+      AcceptsReturn="True"
+      AcceptsTab="True"
+      FontFamily="Lucida Console"
+      FontSize="11"
+      Text="{Binding Sql}"
+      TextChanged="SQLTextBox_TextChanged" />
+
+    <StackPanel
+      Grid.Row="3"
+      Grid.ColumnSpan="2"
+      Orientation="Horizontal">
+      <Button
+        Name="CloseButton"
+        Width="75"
+        Height="21"
+        Margin="0,5,5,0"
+        Command="cmd:TalliesRulesWindowCommands.Close"
+        Content="_Close" />
+      <Button
+        Name="AddButton"
+        Width="75"
+        Height="21"
+        Margin="0,5,5,0"
+        Command="cmd:TalliesRulesWindowCommands.Add"
+        Content="_Add" />
+      <Button
+        Name="DeleteButton"
+        Width="75"
+        Height="21"
+        Margin="0,5,5,0"
+        Content="_Delete"
+        IsEnabled="False" />
+    </StackPanel>
+
+    <StackPanel
+      Grid.Row="3"
+      Grid.Column="2"
+      Orientation="Horizontal">
+      <Button
+        Name="SaveButton"
+        Width="75"
+        Height="21"
+        Margin="0,5,5,0"
+        Command="cmd:TalliesRulesWindowCommands.Save"
+        Content="_Save" />
+      <Button
+        Name="UndoButton"
+        Width="75"
+        Height="21"
+        Margin="0,5,5,0"
+        Content="_Undo"
+        IsEnabled="False" />
+    </StackPanel>
+  </Grid>
+</Window>

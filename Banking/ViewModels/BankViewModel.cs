@@ -12,6 +12,7 @@ namespace Banking.ViewModels
   {
 		private BankingDbContext db;
 		private bool HasMissedTallies;
+		private MainViewModel MainVM;
 
     private BankWindow View { get; set; }
 		public BankingDbContext Db { get => db; set => db = value; }
@@ -32,9 +33,10 @@ namespace Banking.ViewModels
 			}
 		}
 
-		public BankViewModel(OptionViewModel options, MainWindow parent, bool hasMissedTallies = false)
+		public BankViewModel(OptionViewModel options, MainWindow parent, MainViewModel mainVM, bool hasMissedTallies = false)
     {
       Options = options;
+			MainVM = mainVM;
 			HasMissedTallies = hasMissedTallies;
 
       OpenBankTable();
@@ -52,9 +54,10 @@ namespace Banking.ViewModels
 
 		}
 
-		public BankViewModel(OptionViewModel options, OverviewWindow parent, string tallyName, string month)
+		public BankViewModel(OptionViewModel options, OverviewWindow parent, MainViewModel mainVM, string tallyName, string month)
 		{
 			Options = options;
+			MainVM = mainVM;
 
 			OpenBankTable(tallyName, month);
 			View = new BankWindow(this)
@@ -124,7 +127,7 @@ namespace Banking.ViewModels
 
     public void OpenAccount(Bank account)
     {
-      BankAccountViewModel accountMV = new BankAccountViewModel();
+      BankAccountViewModel accountMV = new BankAccountViewModel(MainVM);
 			bool? Result = accountMV.ShowAccount(View, account, Tallies);
 
 			if ((bool)Result)

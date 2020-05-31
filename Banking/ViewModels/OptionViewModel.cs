@@ -12,7 +12,6 @@ namespace Banking.ViewModels
     #region [ Fields ]
 
     private string dbConnection = @"Database=Banking_Dev;Data Source=(Local);Trusted_Connection=True;MultipleActiveResultSets=true";
-    //ToDo Use configurable
     private string importBankPath = @"C:\";
     private string importOVPath = @"C:\";
     private string backupPath = @"C:\";

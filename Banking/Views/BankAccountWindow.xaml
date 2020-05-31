@@ -15,7 +15,10 @@
 		<CommandBinding CanExecute="SaveCommand_CanExecute"
 		                Command="cmd:AccountWindowCommands.Save"
 		                Executed="SaveCommand_Execute" />
-		<CommandBinding CanExecute="CancelCommand_CanExecute"
+    <CommandBinding CanExecute="ProposalCommand_CanExecute"
+                    Command="cmd:AccountWindowCommands.Proposal"
+                    Executed="ProposalCommand_Execute" />
+    <CommandBinding CanExecute="CancelCommand_CanExecute"
 		                Command="cmd:AccountWindowCommands.Cancel"
 		                Executed="CancelCommand_Execute" />
 	</Window.CommandBindings>
@@ -181,6 +184,16 @@
 		         IsReadOnly="True"
 		         Text="{Binding Account.TallyDescription}" />
 
+    <StackPanel Grid.Row="11"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal">
+      <Button Width="75"
+              Margin="0,0,5,0"
+              Command="cmd:AccountWindowCommands.Proposal" 
+              Content="_Proposal" />
+    </StackPanel>
+    
 		<StackPanel Grid.Row="11"
 		            Grid.Column="2"
 		            HorizontalAlignment="Right"

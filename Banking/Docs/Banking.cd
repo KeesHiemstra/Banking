@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Banking.Views.BalanceWindow" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="13.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAIAAAAAAAAAAQCAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Views\BalanceWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainMV" />
+      <Property Name="BalanceMV" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.BankAccountWindow" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="19" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAQAAAABAAQAABAAAAAAAAAIAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Views\BankAccountWindow.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="AccountVM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.BankWindow" BaseTypeListCollapsed="true">
+    <Position X="2" Y="14" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAQAEAAAAAAAA=</HashCode>
+      <FileName>Views\BankWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ModelView" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.EditBalanceWindow" BaseTypeListCollapsed="true">
+    <Position X="22" Y="17" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BBAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EditBalanceWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BalanceMV" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.HistoryWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQEIAACAAAAAAAAAAAAAAEAAAAAAAAAABAACAAA=</HashCode>
+      <FileName>Views\HistoryWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.ImportDetailWindow" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="24.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAABAAAAABAAAAAAAAAIAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ImportDetailWindow.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="DetailVM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.ImportWindow" BaseTypeListCollapsed="true">
+    <Position X="15" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAABAA=</HashCode>
+      <FileName>Views\ImportWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ModelView" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.TalliesRulesWindow" BaseTypeListCollapsed="true">
+    <Position X="6" Y="22.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABCAIAADAAAAAAAAAAAAAgBAAAQBAAAAAA=</HashCode>
+      <FileName>Views\TalliesRulesWindow.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="MissedVM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.OptionWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\OptionWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.OVCardList" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\OVCardList.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CardMV" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Views.OverviewWindow" BaseTypeListCollapsed="true">
+    <Position X="22" Y="19.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAgIA=</HashCode>
+      <FileName>Views\OverviewWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OverviewMV" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IAACJCAAAAABEAQQUZJAAAdEAAABAIAAAgAAQLAEBBE=</HashCode>
+      <FileName>Views\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="MainVM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.ViewModels.BalanceViewModel">
+    <Position X="19" Y="12" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAEAAIAAAAAEAQAAAAAAAHABAAABAgECAICBAAA=</HashCode>
+      <FileName>ViewModels\BalanceViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainVM" />
+      <Property Name="BalanceView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.BankAccountViewModel" BaseTypeListCollapsed="true">
+    <Position X="6" Y="18.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAQAAAAAAAIAAAAAAAAACgAABAAAAAAACAAAAAUA=</HashCode>
+      <FileName>ViewModels\BankAccountViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="View" />
+      <Property Name="Account" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.ViewModels.BankViewModel" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="12.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAIAEEAAAAAACgAABAQCAAAACABBQAAA=</HashCode>
+      <FileName>ViewModels\BankViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Options" />
+      <Property Name="View" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Accounts" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.ViewModels.ImportABNViewModel">
+    <Position X="18.75" Y="20.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAgAAAAAABAAAAAAAAAAIAABAAAA=</HashCode>
+      <FileName>ViewModels\ImportABNViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Cache" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.ImportDetailViewModel">
+    <Position X="16" Y="22.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModels\ImportDetailViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Detail" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.ImportINGViewModel">
+    <Position X="19" Y="18" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAgAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ImportINGViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Cache" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.ImportOVCardViewModel">
+    <Position X="15.5" Y="24.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAgAAAAAAhAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ImportOVCardViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Cache" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.ImportProcessViewModel">
+    <Position X="5.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAgAAIAAAAAIgJAIAAAAAAAABAIYA=</HashCode>
+      <FileName>ViewModels\ImportProcessViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Options" />
+      <Property Name="MainVM" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.ImportViewModel">
+    <Position X="15.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAgAAAAAABAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ViewModels\ImportViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Options" />
+      <Property Name="View" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.MainViewModel" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EgEACSFCBBARAIKgggDEgFAE5gEBAQCAAChAAAJECIE=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="View" />
+      <Property Name="Options" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Accounts" />
+      <Property Name="Imports" />
+      <Property Name="Balances" />
+      <Property Name="CurrentBalances" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.ViewModels.TalliesRulesViewModel" BaseTypeListCollapsed="true">
+    <Position X="9" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAgEACAIAAAAAIAAQJICQEAIgAABAAAAABQCBAAQACA=</HashCode>
+      <FileName>ViewModels\TalliesRulesViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="MainVM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.ViewModels.OptionViewModel" BaseTypeListCollapsed="true">
+    <Position X="12" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAEGCAgAAAAAIAAAAAAGAACgAgAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\OptionViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.ViewModels.OVCardViewModel">
+    <Position X="8.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAEAgAAAAABAAAA=</HashCode>
+      <FileName>ViewModels\OVCardViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Options" />
+      <Property Name="ListView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Banking.ViewModels.OverviewViewModel" BaseTypeListCollapsed="true">
+    <Position X="16" Y="12" Width="2" />
+    <NestedTypes>
+      <Enum Name="Banking.ViewModels.OverviewViewModel.OverviewItem" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\OverviewViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAGAgAAAIAAAAEAAAAAhAADABAAAAACAAAQABA=</HashCode>
+      <FileName>ViewModels\OverviewViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="MainVM" />
+      <Field Name="View" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Models.ABNImport" Collapsed="true">
+    <Position X="26.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAASAAAAACAABAAAACAAAAEE=</HashCode>
+      <FileName>Models\ABNImport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Banking.Models.Balance" BaseTypeListCollapsed="true">
+    <Position X="9" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAwAAEAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Balance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Amounts" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Models.BalanceAmount" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAACAwAAAgAABAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Balance.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Banking.Models.CurrentBalance">
+    <Position X="16.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAWAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Balance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Banking.Models.Bank">
+    <Position X="9.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAQAAASAAAAACAAFAAAACAgQAEE=</HashCode>
+      <FileName>Models\Bank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Banking.Models.BankingDbContext">
+    <Position X="12.5" Y="20.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAIAAAAAAAAAEAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BankingDbContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Accounts" />
+      <Property Name="Imports" />
+      <Property Name="OVCards" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Banking.Models.Import">
+    <Position X="16.25" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEACAAASAAAAACAABAAAACAAAAEE=</HashCode>
+      <FileName>Models\Import.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Banking.Models.OVCard">
+    <Position X="12.75" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACCAAAAAAAABAAAEAoAAACAAAAAAACFAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OVCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Banking.Models.Overview" Collapsed="true">
+    <Position X="28.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\Overview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Banking.Models.OVTravel">
+    <Position X="9.75" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAAAAAAACAAAAAAAAAAAAACIAAAAAAAAAA=</HashCode>
+      <FileName>Models\OVTravel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="OVCards" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
