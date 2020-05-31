@@ -175,6 +175,7 @@ namespace Banking.ViewModels
 			string lastKey = MainVM.TalliesRules
 				.Where(x => x.Key.StartsWith(SelectedAccount.TallyName))
 				.LastOrDefault().Key;
+      if (string.IsNullOrEmpty(lastKey)) { lastKey = "000"; }
 			string lastTallyNumber = lastKey.Substring(lastKey.Length - 3, 3);
 			if (int.TryParse(lastTallyNumber, out int newNumber))
 			{

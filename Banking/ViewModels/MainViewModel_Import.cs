@@ -20,8 +20,8 @@ namespace Banking.ViewModels
   public partial class MainViewModel : INotifyPropertyChanged
   {
     //Missed Tallies Rules (sql)
-    public Dictionary<string, string> TalliesRules { get; set; } =
-      new Dictionary<string, string>();
+    public SortedDictionary<string, string> TalliesRules { get; set; } =
+      new SortedDictionary<string, string>();
     public bool TalliesRulesChanged { get; set; } = false;
 #if DEBUG
     public string TalliesRulesJson = "%OneDrive%\\Tmp\\Banking\\TalliesRules.json".TranslatePath();
@@ -39,7 +39,7 @@ namespace Banking.ViewModels
         using (StreamReader stream = File.OpenText(TalliesRulesJson))
         {
           string json = stream.ReadToEnd();
-          TalliesRules = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+          TalliesRules = JsonConvert.DeserializeObject<SortedDictionary<string, string>>(json);
         }
       }
 
@@ -47,8 +47,7 @@ namespace Banking.ViewModels
 
     public void SaveTalliesRules()
     {
-      string json = JsonConvert.SerializeObject(TalliesRules
-        .OrderBy(x => x.Key), Formatting.Indented);
+      string json = JsonConvert.SerializeObject(TalliesRules, Formatting.Indented);
       using (StreamWriter stream = new StreamWriter(TalliesRulesJson))
       {
         stream.Write(json);
