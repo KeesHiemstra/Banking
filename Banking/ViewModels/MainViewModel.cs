@@ -20,6 +20,8 @@ namespace Banking.ViewModels
 		public MainWindow View;
 		private bool hasMissedTallies;
 		private int missedTalliesCount;
+		public Dictionary<string, string> AccountNames =
+			new Dictionary<string, string>();
 
 #if DEBUG
 		public readonly string BALANCE = "%OneDrive%\\Tmp\\Banking\\Balance.json".TranslatePath();
@@ -151,6 +153,24 @@ namespace Banking.ViewModels
 			ImportFileFilters.Add("ABN", "ABN import file (*.tab)|*.tab");
 			ImportFileFilters.Add("ING", "ING import file (*.csv)|*.csv");
 
+      string jsonPath = "%OneDrive%\\Data\\Banking\\AccountNames.json".TranslatePath();
+      if (File.Exists(jsonPath))
+      {
+        using (StreamReader stream = File.OpenText(jsonPath))
+        {
+          string json = stream.ReadToEnd();
+          AccountNames = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        }
+      }
+      else
+      {
+				MessageBox.Show($"The file 'jsonPath' doesn't exist",
+					"AccountNames json",
+					MessageBoxButton.OK,
+					MessageBoxImage.Exclamation);
+				Application.Current.Shutdown();
+      }
+			
 			OpenBalances();
 			GetCurrentBalances();
 
