@@ -1,3 +1,6 @@
+Version 2.2.1.59 (2020-06-01)
+* Bug fix: Update [TallyName] was by accident deleted.
+
 Version 2.2.1.58 (2020-06-01)
 * Added AccountNames.json to exclude account numbers from source.
 * Improved TalliesTules. The save button was sometimes not active in a change in the rule.

@@ -192,6 +192,7 @@ namespace Banking.ViewModels
       //SQL
       Sql = "\r\nUPDATE Bank"; 
       Sql = $"{Sql}\r\nSET [Origin] = '{MainVM.AccountNames[SelectedAccount.Account]}',";
+      Sql = $"{Sql}\r\n\t[TallyName] = '{FullTallyName}'";
       Sql = $"{Sql}\r\nWHERE [TallyName] IS NULL";
       Sql = $"{Sql}\r\n\tAND [Account] = '{SelectedAccount.Account}'";
       Sql = $"{Sql}\r\n\tAND [Mutation] = '{SelectedAccount.Mutation}'";
