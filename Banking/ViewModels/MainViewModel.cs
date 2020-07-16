@@ -452,16 +452,13 @@ namespace Banking.ViewModels
 			window.ShowDialog();
 		}
 
-		public void ShowHistory()
-		{
-			_ = new HistoryWindow() 
-			{ 
-				Left = View.Left + 20,
-				Top = View.Top + 20
-			}.ShowDialog();
-		}
+    public void ShowHistory() => _ = new HistoryWindow()
+    {
+      Left = View.Left + 20,
+      Top = View.Top + 20
+    }.ShowDialog();
 
-		public void ShowLastBackup()
+    public void ShowLastBackup()
 		{
 			DateTime backupFileTime;
 			var backups = Directory.EnumerateFiles(Options.BackupPath.TranslatePath(), $"{Options.DbName}-*.bak").OrderByDescending(x => x);
