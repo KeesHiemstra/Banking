@@ -1,3 +1,7 @@
+Version 2.2.1.60 (2020-08-28)
+* Simplified declaration.
+* Removed unused using.
+
 Version 2.2.1.59 (2020-06-01)
 * Bug fix: Update [TallyName] was by accident deleted.
 

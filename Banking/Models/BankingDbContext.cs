@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace Banking.Models
 {
-  public class BankingDbContext : DbContext
+	public class BankingDbContext : DbContext
   {
     public BankingDbContext(string dbConnection) : base(dbConnection) { }
 
