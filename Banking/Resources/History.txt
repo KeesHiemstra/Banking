@@ -1,3 +1,7 @@
+Version 2.2.2.61 (2020-09-01)
+* Bug fix: ING file has now 11 fields instead 9.
+* Bug fix: ING file had , separator and is changed to ; separator.
+
 Version 2.2.1.60 (2020-08-28)
 * Simplified declaration.
 * Removed unused using.

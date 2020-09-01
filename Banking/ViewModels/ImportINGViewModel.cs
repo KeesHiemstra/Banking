@@ -1,5 +1,8 @@
 ﻿using Banking.Exceptions;
 using Banking.Models;
+
+using CHi.Log;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,11 +50,13 @@ namespace Banking.ViewModels
 			if (!File.Exists(fileName))
 			{
 				result = false;
+				Log.Write($"Import ING file '{fileName}'");
 				throw new ImportFileException(fileName);
 			}
 
 			try
 			{
+				string separator = null;
 				string Line = string.Empty;
 				int Count = 0;
 
@@ -59,7 +64,22 @@ namespace Banking.ViewModels
 				{
 					while (sr.Peek() >= 0)
 					{
-						Line = sr.ReadLine().Replace("\",\"", "|")
+						Line = sr.ReadLine();
+
+						if (separator == null)
+						{
+							if (Line.IndexOf("\",\"") > 0)
+							{
+								separator = "\",\"";
+							}
+							else if (Line.IndexOf("\";\"") > 0)
+							{
+								separator = "\";\"";
+							}
+						}
+
+						Line = Line
+							.Replace(separator, "|")
 							.Replace("\"", "");
 						Count++;
 						//Skip the header first line
@@ -73,6 +93,7 @@ namespace Banking.ViewModels
 			catch (Exception ex)
 			{
 				result = false;
+				Log.Write($"Import ING file exception: {ex.Message}");
 				throw new ImportStreamException(ex.Message);
 			}
 
@@ -97,9 +118,9 @@ namespace Banking.ViewModels
 			//Split line on pipeline character (comma was disrupting as decimal separator)
 			string[] Record = line.Split('|');
 
-			if (Record.Count() != 9)
+			if (Record.Count() != 9 && Record.Count() != 11)
 			{
-				throw new ImportFileHeaderException("ING csv file", 9, Record.Count());
+				throw new ImportFileHeaderException("ING file", 9, Record.Count());
 			}
 
 			//Date [0]
