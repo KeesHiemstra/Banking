@@ -1,7 +1,11 @@
 ﻿using Banking.Models;
 using Banking.Views;
+
 using CHi.Extensions;
+using CHi.Log;
+
 using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -129,10 +133,8 @@ namespace Banking.ViewModels
 
     #region INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(string propertyName = "")
-		{
+		private void NotifyPropertyChanged(string propertyName = "") => 
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
 		#endregion
 
 		public MainViewModel(MainWindow mainWindow)
@@ -153,12 +155,10 @@ namespace Banking.ViewModels
       string jsonPath = "%OneDrive%\\Data\\Banking\\AccountNames.json".TranslatePath();
       if (File.Exists(jsonPath))
       {
-        using (StreamReader stream = File.OpenText(jsonPath))
-        {
-          string json = stream.ReadToEnd();
-          AccountNames = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-        }
-      }
+				using StreamReader stream = File.OpenText(jsonPath);
+				string json = stream.ReadToEnd();
+				AccountNames = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+			}
       else
       {
 				MessageBox.Show($"The file 'jsonPath' doesn't exist",
@@ -230,11 +230,9 @@ namespace Banking.ViewModels
 
 			if (File.Exists(Options.JsonPath))
 			{
-				using (StreamReader stream = File.OpenText(Options.JsonPath))
-				{
-					string json = stream.ReadToEnd();
-					Options = JsonConvert.DeserializeObject<OptionViewModel>(json);
-				}
+				using StreamReader stream = File.OpenText(Options.JsonPath);
+				string json = stream.ReadToEnd();
+				Options = JsonConvert.DeserializeObject<OptionViewModel>(json);
 			}
 
 		}
@@ -316,7 +314,11 @@ namespace Banking.ViewModels
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show(ex.Message, "Corrupt Balance.json", MessageBoxButton.OK, MessageBoxImage.Warning);
+					Log.Write($"Error opening balances: {ex.Message}");
+					MessageBox.Show(ex.Message, 
+						"Corrupt Balance.json", 
+						MessageBoxButton.OK, 
+						MessageBoxImage.Warning);
 				} 
 			}
 
@@ -339,6 +341,7 @@ namespace Banking.ViewModels
 				ToSaveBalances = false;
 			}
 
+			Log.Write("Closing banking");
 		}
 
 		public void SaveBalances()
@@ -349,6 +352,7 @@ namespace Banking.ViewModels
 			{
 				stream.Write(json);
 			}
+			Log.Write("Balances are saved");
 
 		}
 
@@ -386,6 +390,7 @@ namespace Banking.ViewModels
 
 			if (!Directory.Exists(Options.BackupPath.TranslatePath()))
 			{
+				Log.Write($"Folder '{Options.BackupPath}' doesn't exist");
 				MessageBox.Show($"Folder '{Options.BackupPath}' doesn't exist",
 					"Backup path",
 					MessageBoxButton.OK,
@@ -409,13 +414,13 @@ namespace Banking.ViewModels
 
 			try
 			{
-				using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
-				{
-					db.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, sql);
-				}
+				using BankingDbContext db = new BankingDbContext(Options.DbConnection);
+				db.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, sql);
+				Log.Write($"Database '{Options.DbConnection}' is backed up");
 			}
 			catch (Exception ex)
 			{
+				Log.Write($"Error backup: {ex.Message}");
 				MessageBox.Show($"{ex.Message}",
 					"Backup exception",
 					MessageBoxButton.OK,
@@ -427,6 +432,7 @@ namespace Banking.ViewModels
       if (File.Exists(BALANCE))
       {
         File.Copy(BALANCE, backupFile);
+				Log.Write("Balance file is copied");
       }
 
 			backupFile = $"{backupFolder}\\TalliesRules.json";
@@ -434,6 +440,7 @@ namespace Banking.ViewModels
 			if (File.Exists(TalliesRulesJson))
 			{
 				File.Copy(TalliesRulesJson, backupFile);
+				Log.Write("Tallies rules file is copied");
 			}
 
 			MessageBox.Show($"Backup created successful", 
@@ -483,7 +490,6 @@ namespace Banking.ViewModels
 			TalliesRulesViewModel missed = new TalliesRulesViewModel((Window)View, this);
 			missed.ShowTalliesRules();
 		}
-
 
 	}
 }

@@ -114,7 +114,7 @@ namespace Banking.ViewModels
 			string export = string.Empty;
 			foreach (var item in Data.Tables[0].Columns)
 			{
-				export += $"{item.ToString()}\t";
+				export += $"{item}\t";
 			}
 			export += "\n";
 
@@ -122,7 +122,7 @@ namespace Banking.ViewModels
 			{
 				foreach (var item in row.ItemArray)
 				{
-					export += $"{item.ToString()}\t";
+					export += $"{item}\t";
 				}
 				export += "\n";
 			}

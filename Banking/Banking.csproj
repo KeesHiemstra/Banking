@@ -114,7 +114,7 @@
     <Compile Include="ViewModels\ImportOVCardViewModel.cs" />
     <Compile Include="ViewModels\ImportProcessViewModel.cs" />
     <Compile Include="ViewModels\ImportProcessViewModel_SQL.cs" />
-    <Compile Include="ViewModels\Log.cs" />
+    <Compile Include="Extensions\Log.cs" />
     <Compile Include="ViewModels\MainViewModel_Import.cs" />
     <Compile Include="ViewModels\TalliesRulesViewModel.cs" />
     <Compile Include="ViewModels\OVCardViewModel.cs" />

@@ -1,5 +1,8 @@
 ﻿using Banking.ViewModels;
 
+using CHi.Log;
+
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,7 +20,9 @@ namespace Banking
 
 			InitializeComponent();
 
-			Title = $"Banking ({System.Reflection.Assembly.GetExecutingAssembly().GetName().Version})";
+			Log.Write("Started banking");
+			string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			Title = $"Banking ({version})";
 
 			MainVM = new MainViewModel(this);
 			DataContext = MainVM;
@@ -221,6 +226,7 @@ namespace Banking
       if (MainVM.TalliesRulesChanged)
       {
 				MainVM.SaveTalliesRules();
+				Log.Write("Tallies rules are saved");
 			}
 
 			MainVM.CloseWindow();

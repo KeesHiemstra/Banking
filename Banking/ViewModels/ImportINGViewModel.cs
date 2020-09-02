@@ -31,6 +31,7 @@ namespace Banking.ViewModels
 						}
 					}
 
+					Log.Write($"{Cache.Count} records are imported from ING file");
 					MessageBox.Show($"{Cache.Count} records are imported.",
 						"Import ING",
 						MessageBoxButton.OK,
@@ -38,6 +39,7 @@ namespace Banking.ViewModels
 				}
 				catch
 				{
+					Log.Write("Failed importing ING file");
 					throw new ImportException("Import ING file has failed");
 				}
 			}
@@ -60,33 +62,31 @@ namespace Banking.ViewModels
 				string Line = string.Empty;
 				int Count = 0;
 
-				using (StreamReader sr = new StreamReader(fileName))
+				using StreamReader sr = new StreamReader(fileName);
+				while (sr.Peek() >= 0)
 				{
-					while (sr.Peek() >= 0)
+					Line = sr.ReadLine();
+
+					if (separator == null)
 					{
-						Line = sr.ReadLine();
-
-						if (separator == null)
+						if (Line.IndexOf("\",\"") > 0)
 						{
-							if (Line.IndexOf("\",\"") > 0)
-							{
-								separator = "\",\"";
-							}
-							else if (Line.IndexOf("\";\"") > 0)
-							{
-								separator = "\";\"";
-							}
+							separator = "\",\"";
 						}
-
-						Line = Line
-							.Replace(separator, "|")
-							.Replace("\"", "");
-						Count++;
-						//Skip the header first line
-						if (Count > 1)
+						else if (Line.IndexOf("\";\"") > 0)
 						{
-							ProcessLine(Line);
+							separator = "\";\"";
 						}
+					}
+
+					Line = Line
+						.Replace(separator, "|")
+						.Replace("\"", "");
+					Count++;
+					//Skip the header first line
+					if (Count > 1)
+					{
+						ProcessLine(Line);
 					}
 				}
 			}
@@ -120,6 +120,7 @@ namespace Banking.ViewModels
 
 			if (Record.Count() != 9 && Record.Count() != 11)
 			{
+				Log.Write("The number of field doesn't match (9 or 11)");
 				throw new ImportFileHeaderException("ING file", 9, Record.Count());
 			}
 

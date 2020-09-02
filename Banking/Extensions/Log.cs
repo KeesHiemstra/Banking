@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace CHi.Log
 {
@@ -9,6 +10,7 @@ namespace CHi.Log
     #region [ Fields ]
 
     private static string LoggingFile;
+    private static bool IsLogged = false;
 
     #endregion
 
@@ -20,21 +22,35 @@ namespace CHi.Log
     {
       if (string.IsNullOrEmpty(LoggingFile))
       {
-        string name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-        string lf = SetLoggingFile($".\\{name}.log");
-				if (File.Exists(lf))
+				if (!IsLogged)
 				{
-					using StreamWriter stream = new StreamWriter(LoggingFile, true);
-					stream.WriteLine();
-				}
-
-        Write($"Logging '{name}' started using '{lf}'");
+          string location = Assembly.GetExecutingAssembly().Location;
+          string name = Assembly.GetExecutingAssembly().GetName().Name;
+          string lf = SetLoggingFile($".\\{name}.log");
+          string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+#if DEBUG
+          version += " (debug)";
+#else
+          version += " (release)";
+#endif
+          if (File.Exists(lf))
+          {
+            using StreamWriter stream = new StreamWriter(LoggingFile, true);
+            stream.WriteLine();
+          }
+          Write($"{location} is started");
+          Write($"{name} version {version}");
+          Write($"Logging '{name}' started using '{lf}'");
+        }
       }
-
-      string Message = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {message}";
-      using (StreamWriter stream = new StreamWriter(LoggingFile, true))
-      {
-        stream.WriteLine(Message);
+      IsLogged = true;
+			if (!string.IsNullOrEmpty(message))
+			{
+        string Message = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {message}";
+        using (StreamWriter stream = new StreamWriter(LoggingFile, true))
+        {
+          stream.WriteLine(Message);
+        }
       }
     }
 
@@ -44,7 +60,11 @@ namespace CHi.Log
     /// <param name="messages"></param>
     public static void Write(params string[] messages)
     {
-			if (messages.Length == 0) { return;	}
+			if (messages.Length == 0) 
+      {
+        Write("");
+        return;	
+      }
       Write(messages[0]);
 
 			using StreamWriter stream = new StreamWriter(LoggingFile, true);
