@@ -120,7 +120,7 @@ namespace Banking.ViewModels
 
 			if (Record.Count() != 9 && Record.Count() != 11)
 			{
-				Log.Write("The number of field doesn't match (9 or 11)");
+				Log.Write($"The number of field doesn't match (9 or 11), there are {Record.Count()} fields");
 				throw new ImportFileHeaderException("ING file", 9, Record.Count());
 			}
 

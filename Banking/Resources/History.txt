@@ -1,4 +1,5 @@
-Version 2.2.2.62 ()
+Version 2.2.2.62 (2020-09-06)
+* Bug fix: ABN file had a too long field. It was caused by an extra space in the name.
 * Extended Log.Write.
 * Added more log entries.
 * Simplified declaration.

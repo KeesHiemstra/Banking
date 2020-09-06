@@ -1,5 +1,6 @@
 ﻿using Banking.Exceptions;
 using Banking.Models;
+using CHi.Log;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,14 +15,13 @@ namespace Banking.ViewModels
 
 		public ImportABNViewModel(string fileName, OptionViewModel options)
 		{
-
+			Log.Write("Starting ABN import");
 			ProcessImportABNModelView(fileName, options);
 
 		}
 
 		private void ProcessImportABNModelView(string fileName, OptionViewModel options)
 		{
-
 			if (ImportFile(fileName))
 			{
 				try
@@ -35,13 +35,15 @@ namespace Banking.ViewModels
 						}
 					}
 
+					Log.Write($"{Cache.Count} records are imported from ABN file");
 					MessageBox.Show($"{Cache.Count} records are imported.",
 						"Import ABN",
 						MessageBoxButton.OK,
 						MessageBoxImage.Information);
 				}
-				catch
+				catch (Exception ex)
 				{
+					Log.Write($"Import ABN file has failed after record {Cache.Count}", ex.Message, ex.InnerException.ToString());
 					throw new ImportException("Import ABN file has failed");
 				}
 			}
@@ -55,6 +57,7 @@ namespace Banking.ViewModels
 			if (!File.Exists(fileName))
 			{
 				result = false;
+				Log.Write($"Error in {fileName}");
 				throw new ImportFileException(fileName);
 			}
 
@@ -78,11 +81,13 @@ namespace Banking.ViewModels
 			}
 			catch (IndexOutOfRangeException ex)
 			{
+				Log.Write($"Record {Count} caused index error\n{ex.Message}");
 				MessageBox.Show($"Record {Count} caused index error\n{ex.Message}");
 			}
 			catch (Exception ex)
 			{
 				result = false;
+				Log.Write($"Error: {ex.Message}");
 				MessageBox.Show(ex.Message);
 				throw new ImportStreamException(ex.Message);
 			}
@@ -112,6 +117,7 @@ namespace Banking.ViewModels
 
 			if (Record.Count() != 8)
 			{
+				Log.Write($"The number of field doesn't match (8), there are {Record.Count()} fields");
 				throw new ImportFileHeaderException("ABN tab file", 8, Record.Count());
 			}
 
@@ -131,8 +137,9 @@ namespace Banking.ViewModels
 					Int32.Parse(Record[2].Substring(6, 2))
 					);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+				Log.Write($"Error record(2) {Record[2]}: {ex.Message}");
 				throw new ImportDateException(Record[2]);
 			}
 
@@ -165,7 +172,33 @@ namespace Banking.ViewModels
 			};
 
 			ProcessRecord(record);
+
 			Cache.Add(record);
+
+			if (record.Name.Length > 45)
+			{
+				Log.Write($"Error in record {Cache.Count}. Field 'Name' is too long ({record.Name.Length})");
+			}
+			else if (record.Account.Length > 18)
+			{
+				Log.Write($"Error in record {Cache.Count}. Field 'Account' is too long ({record.Account.Length})");
+			}
+			else if (record.CounterAccount.Length > 30)
+			{
+				Log.Write($"Error in record {Cache.Count}. Field 'CounterAccount' is too long ({record.CounterAccount.Length})");
+			}
+			else if (record.Mutation.Length > 25)
+			{
+				Log.Write($"Error in record {Cache.Count}. Field 'Mutation' is too long ({record.Mutation.Length})");
+			}
+			else if (record.Text.Length > 350)
+			{
+				Log.Write($"Error in record {Cache.Count}. Field 'Text' is too long ({record.Text.Length})");
+			}
+			else if (record.RawText.Length > 350)
+			{
+				Log.Write($"Error in record {Cache.Count}. Field 'RawText' is too long ({record.RawText.Length})");
+			}
 
 		}
 
@@ -283,6 +316,10 @@ namespace Banking.ViewModels
 
 					Search = record.Text.Substring(Start, Count - Start);
 					record.Name = Search.Replace("Naam: ", "").Trim();
+					if (record.Name.Length > 27 && record.Name[26] == ' ')
+					{
+						record.Name = record.Name.Remove(26, 1);
+					}
 					record.Text = record.Text.Replace(Search, "").Trim();
 
 					if (record.Text.Contains("Machtiging: "))
