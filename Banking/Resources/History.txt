@@ -1,3 +1,7 @@
+Version 2.2.2.63 (2020-09-08)
+* Bug fix: Clicking on the scroll bar (outside the grid) cause an error.
+* Enlarge the width of BalanceView.
+
 Version 2.2.2.62 (2020-09-06)
 * Bug fix: ABN file had a too long field. It was caused by an extra space in the name.
 * Extended Log.Write.

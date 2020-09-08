@@ -1,6 +1,7 @@
 ﻿using Banking.Models;
 using Banking.Views;
 using System;
+using System.Linq;
 
 namespace Banking.ViewModels
 {
@@ -25,15 +26,12 @@ namespace Banking.ViewModels
 
     public BalanceViewModel(MainViewModel mainVM, BalanceWindow balanceWindow)
 		{
-
 			MainVM = mainVM;
 			BalanceView = balanceWindow;
-
 		}
 
 		public int SelectBalance(int selectBalance)
 		{
-
 			SelectedBalance = selectBalance;
 
 			if (MainVM.Balances.Count > 0)
@@ -42,12 +40,10 @@ namespace Banking.ViewModels
 			}
 
 			return selectBalance;
-
 		}
 
 		public void SaveWindow()
 		{
-
 			if (AddAccount)
 			{
 				MainVM.Balances.Add(new Models.Balance { Name = EditAccount });
@@ -86,49 +82,39 @@ namespace Banking.ViewModels
 			}
 
 			EditBalanceView.Close();
-
 		}
 
 		public void CancelWindow()
 		{
-
 			EditBalanceView.Close();
-
 		}
 
 		public void NewAccount()
 		{
-
 			AddAccount = true;
 			AddBalance = true;
 			ShowEditBalance(true, true);
-
 		}
 
 		public void NewBalance()
 		{
-
 			AddAccount = false;
 			AddBalance = true;
 			ShowEditBalance(false, true);
-
 		}
 
 		public void EditBalance(BalanceAmount balanceAmount)
 		{
-
 			AddAccount = false;
 			AddBalance = false;
 			CurrentAmount = balanceAmount;
 			EditDate = balanceAmount.Date;
 			EditAmount = balanceAmount.Amount;
 			ShowEditBalance(false, false);
-
 		}
 
 		private void ShowEditBalance(bool newAccountName, bool newBalence)
 		{
-
 			if (newAccountName)
 			{
 				EditAccount = string.Empty;
@@ -153,7 +139,6 @@ namespace Banking.ViewModels
 			EditBalanceView.AmountTextBox.Focus();
 			EditBalanceView.ShowDialog();
 		}
-
 	}
 
 }

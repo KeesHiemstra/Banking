@@ -47,6 +47,11 @@ namespace Banking.Views
 			//var Col = (string)((DataGrid)sender).CurrentCell.Column.Header;
 			//var Row = (string)((DataRowView)((DataGrid)sender).CurrentCell.Item).Row.ItemArray[0];
 
+			if (((DataGrid)sender).CurrentColumn == null)
+			{
+				return;
+			}
+
 			OverviewMV.FilterAccountList(
 				(string)((DataGrid)sender).CurrentCell.Column.Header,
 				(string)((DataRowView)((DataGrid)sender).CurrentCell.Item).Row.ItemArray[0]

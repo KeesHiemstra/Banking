@@ -7,7 +7,7 @@
         Title="Overview"
 				ShowInTaskbar="False"
         Width="800"
-        Height="450"
+        Height="470"
         mc:Ignorable="d">
 	<Grid>
 		<Grid.ColumnDefinitions>

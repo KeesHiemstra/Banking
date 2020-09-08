@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:Banking.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Balance"
-        Width="250"
+        Width="260"
         Height="450"
         ShowInTaskbar="False"
         Topmost="True"
@@ -31,7 +31,9 @@
 		          ItemsSource="{Binding BalanceAmount}"
 							MouseDoubleClick="BalanceAmountDataGrid_MouseDoubleClick">
 			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding Date, StringFormat=yyyy-MM-dd}" Header="Date" />
+				<DataGridTextColumn Binding="{Binding Date, StringFormat=yyyy-MM-dd}"
+                            Header="Date" 
+                            SortDirection="Descending"/>
 				<DataGridTextColumn MinWidth="70"
 				                    Binding="{Binding Amount, StringFormat=0.00}"
 				                    Header="Balance">
