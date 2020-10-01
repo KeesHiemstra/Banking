@@ -1,6 +1,6 @@
 ﻿using Banking.Models;
 using Banking.Views;
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
@@ -8,12 +8,12 @@ using System.Windows.Media;
 
 namespace Banking.ViewModels
 {
-  public class BankAccountViewModel : INotifyPropertyChanged
+	public class BankAccountViewModel : INotifyPropertyChanged
   {
     #region [ Fields ]
 
-    BankAccountWindow View;
-    MainViewModel MainVM;
+    private BankAccountWindow View;
+		private readonly MainViewModel MainVM;
 
     #endregion
 
@@ -21,13 +21,12 @@ namespace Banking.ViewModels
     public List<string> Tallies { get; set; }
 
     #region [ Method ]
+
     public event PropertyChangedEventHandler PropertyChanged;
-    private void NotifyPropertyChanged(string propertyName = "")
+		private void NotifyPropertyChanged(string propertyName = "")
     {
-      if (PropertyChanged != null)
-      {
-        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		
     }
     #endregion
 

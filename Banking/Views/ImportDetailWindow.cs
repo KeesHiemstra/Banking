@@ -10,7 +10,7 @@ namespace Banking.Views
   /// </summary>
   public partial class ImportDetailWindow : Window
   {
-    ImportDetailViewModel DetailVM;
+		readonly ImportDetailViewModel DetailVM;
 
     public ImportDetailWindow(ImportDetailViewModel detail)
     {
@@ -40,7 +40,6 @@ namespace Banking.Views
 
       DialogResult = false;
     }
-
 
   }
 }

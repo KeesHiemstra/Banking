@@ -10,8 +10,8 @@ namespace Banking.ViewModels
 {
 	public class ImportOVCardViewModel
 	{
-		private string defaultCardNumber;
-		private List<OVCard> Cache = new List<OVCard>();
+		private readonly string defaultCardNumber;
+		private readonly List<OVCard> Cache = new List<OVCard>();
 
 		public ImportOVCardViewModel(string fileName, OptionViewModel options)
 		{
@@ -50,9 +50,7 @@ namespace Banking.ViewModels
 				{
 					MessageBox.Show($"{ex.Message}", "Import OV-Card file has failed", MessageBoxButton.OK, MessageBoxImage.Error);
 				}
-
 			}
-
 		}
 
 		private bool ImportFile(string fileName)
@@ -70,18 +68,16 @@ namespace Banking.ViewModels
 				string Line = string.Empty;
 				int Count = 0;
 
-				using (StreamReader sr = new StreamReader(fileName))
+				using StreamReader sr = new StreamReader(fileName);
+				while (sr.Peek() >= 0)
 				{
-					while (sr.Peek() >= 0)
+					//Line = sr.ReadLine().Replace("\",\"", "|").Replace("\"", "");
+					Line = sr.ReadLine();
+					Count++;
+					//Skip the header first line
+					if (Count > 1)
 					{
-						//Line = sr.ReadLine().Replace("\",\"", "|").Replace("\"", "");
-						Line = sr.ReadLine();
-						Count++;
-						//Skip the header first line
-						if (Count > 1)
-						{
-							ProcessLine(Line);
-						}
+						ProcessLine(Line);
 					}
 				}
 			}
@@ -92,12 +88,10 @@ namespace Banking.ViewModels
 			}
 
 			return result;
-
 		}
 
 		private void ProcessLine(string line)
 		{
-
 			bool DivideBy100 = (decimal.Parse("1.25") == 125);
 
 			DateTime Date;
@@ -221,4 +215,5 @@ namespace Banking.ViewModels
 			Cache.Add(record);
 		}
 	}
+
 }

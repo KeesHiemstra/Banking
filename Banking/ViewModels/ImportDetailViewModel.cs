@@ -1,10 +1,9 @@
 ﻿using Banking.Models;
 using Banking.Views;
-using System;
 
 namespace Banking.ViewModels
 {
-  public class ImportDetailViewModel
+	public class ImportDetailViewModel
   {
     public Import Detail { get; set; }
 

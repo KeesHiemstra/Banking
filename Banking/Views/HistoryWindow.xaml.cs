@@ -10,46 +10,39 @@ namespace Banking.Views
   /// </summary>
   public partial class HistoryWindow : Window
   {
-    readonly List<string> lineBuffer = new List<string>();
-    readonly List<ListItem> itemBuffer = new List<ListItem>();
+    private readonly List<string> lineBuffer = new List<string>();
+    private readonly List<ListItem> itemBuffer = new List<ListItem>();
 
     public HistoryWindow()
     {
-
       InitializeComponent();
 
       ShowAbout();
       ShowHistory();
-
     }
 
     private void ShowAbout()
     {
-
       ApplicationTitleTextBlock.Text = NameValue("",
         Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title);
       VersionTextBlock.Text = NameValue("Version: ",
         Assembly.GetExecutingAssembly().GetName().Version.ToString());
       DiscriptionTextBlock.Text = NameValue("",
         Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyDescriptionAttribute>().Description);
-
     }
 
     private string NameValue(string Name, string Value)
     {
-
       string result = string.Empty;
       if (!string.IsNullOrEmpty(Value))
       {
         result = $"{Name}{Value}";
       }
       return result;
-
     }
 
     private void ShowHistory()
     {
-
       string[] history = Banking.Properties.Resources.History
         .Replace("\r\n", "\n")
         .Split('\n');
@@ -123,12 +116,10 @@ namespace Banking.Views
       {
         AddParagraph();
       }
-
     }
 
     private string BufferToString()
     {
-
       string result = string.Empty;
 
       foreach (string line in lineBuffer)
@@ -139,12 +130,10 @@ namespace Banking.Views
       result = result.Replace("  ", " ");
 
       return result;
-
     }
 
     private void BufferToList()
     {
-
       if (lineBuffer.Count > 0)
       {
         itemBuffer.Add(new ListItem(new Paragraph(new Run(BufferToString()))
@@ -158,12 +147,10 @@ namespace Banking.Views
       }
       HistoryFlowDocument.Blocks.Add(list);
       itemBuffer.Clear();
-
     }
 
     private void AddParagraph()
     {
-
       var par = BufferToString();
       HistoryFlowDocument.Blocks.Add(
         new Paragraph(
@@ -171,9 +158,7 @@ namespace Banking.Views
         {
           TextAlignment = TextAlignment.Left
         });
-
     }
 
   }
-
 }

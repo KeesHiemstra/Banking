@@ -1,3 +1,6 @@
+Version 2.2.2.64 (2020-10-01)
+* Simplified declaration.
+
 Version 2.2.2.63 (2020-09-08)
 * Bug fix: Clicking on the scroll bar (outside the grid) cause an error.
 * Enlarge the width of BalanceView.

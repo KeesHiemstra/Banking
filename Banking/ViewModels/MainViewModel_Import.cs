@@ -35,48 +35,42 @@ namespace Banking.ViewModels
     {
       if (File.Exists(TalliesRulesJson))
       {
-        using (StreamReader stream = File.OpenText(TalliesRulesJson))
-        {
-          string json = stream.ReadToEnd();
-          TalliesRules = JsonConvert.DeserializeObject<SortedDictionary<string, string>>(json);
-        }
-      }
-
+				using StreamReader stream = File.OpenText(TalliesRulesJson);
+				string json = stream.ReadToEnd();
+				TalliesRules = JsonConvert.DeserializeObject<SortedDictionary<string, string>>(json);
+			}
     }
 
     public void SaveTalliesRules()
     {
       string json = JsonConvert.SerializeObject(TalliesRules, Formatting.Indented);
-      using (StreamWriter stream = new StreamWriter(TalliesRulesJson))
-      {
-        stream.Write(json);
-      }
-
-    }
+			using StreamWriter stream = new StreamWriter(TalliesRulesJson);
+			stream.Write(json);
+		}
 
     private string SelectImportFilePath(string filter)
     {
-      //ABN: *.tab
-      //ING: *.csv
-      OpenFileDialog openFileDialog = new OpenFileDialog();
-      openFileDialog.Filter = filter;
-      openFileDialog.InitialDirectory = Options.ImportBankPath.TranslatePath();
+			//ABN: *.tab
+			//ING: *.csv
+			OpenFileDialog openFileDialog = new OpenFileDialog
+			{
+				Filter = filter,
+				InitialDirectory = Options.ImportBankPath.TranslatePath()
+			};
 
-      if (openFileDialog.ShowDialog() == true)
+			if (openFileDialog.ShowDialog() == true)
       {
         return openFileDialog.FileName;
       }
 
       return string.Empty;
-
     }
 
     #region Import ABN file
     public async Task ImportABNFileAsync()
     {
-      string fileName = string.Empty;
-      fileName = SelectImportFilePath(ImportFileFilters["ABN"]);
-      if (String.IsNullOrEmpty(fileName))
+			string fileName = SelectImportFilePath(ImportFileFilters["ABN"]);
+			if (String.IsNullOrEmpty(fileName))
       {
         return;
       }
@@ -107,9 +101,8 @@ namespace Banking.ViewModels
     #region Import ING file
     public async Task ImportINGFileAsync()
     {
-      string fileName = string.Empty;
-      fileName = SelectImportFilePath(ImportFileFilters["ING"]);
-      if (String.IsNullOrEmpty(fileName))
+			string fileName = SelectImportFilePath(ImportFileFilters["ING"]);
+			if (String.IsNullOrEmpty(fileName))
       {
         return;
       }
@@ -126,43 +119,38 @@ namespace Banking.ViewModels
       _ = new ImportINGViewModel(fileName, Options);
       await GetImportSummaryAsync();
       NotifyPropertyChanged("Imports");
-
     }
     #endregion
 
     #region Process import table
     public async Task ProcessImportTableAsync()
     {
+			_ = new ImportProcessViewModel(Options, this);
 
-      ImportProcessViewModel import = new ImportProcessViewModel(Options, this);
+			//Step 1: Import the data from Import table to Bank table.
 
-      //Step 1: Import the data from Import table to Bank table.
+			//Step 2: Update the Origin and TallyName, TallyDescription.
 
-      //Step 2: Update the Origin and TallyName, TallyDescription.
-
-      GetSummaries();
+			GetSummaries();
       NotifyPropertyChanged();
-
     }
     #endregion
 
     #region Clear import table
     public void ClearImportTable()
     {
-      using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
-      {
-        MessageBoxResult result = MessageBox.Show("Are you sure to clear the import table?", "Clear import table", MessageBoxButton.YesNo, MessageBoxImage.Question);
-        if (result != MessageBoxResult.Yes)
-        {
-          return;
-        }
+			using BankingDbContext db = new BankingDbContext(Options.DbConnection);
+			MessageBoxResult result = MessageBox.Show("Are you sure to clear the import table?", "Clear import table", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if (result != MessageBoxResult.Yes)
+			{
+				return;
+			}
 
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE Import");
-        Thread.Sleep(1000);
+			db.Database.ExecuteSqlCommand("TRUNCATE TABLE Import");
+			Thread.Sleep(1000);
 
-        GetSummaries();
-      }
-    }
+			GetSummaries();
+		}
     #endregion
 
     #region Import OV Card file
@@ -193,7 +181,6 @@ namespace Banking.ViewModels
       }
 
       _ = new ImportOVCardViewModel(fileName, Options);
-
     }
 
     #endregion

@@ -10,48 +10,46 @@ namespace Banking.ViewModels
 {
 	public class BankViewModel : INotifyPropertyChanged
   {
-		private BankingDbContext db;
-		private bool HasMissedTallies;
-		private MainViewModel MainVM;
 
-    private BankWindow View { get; set; }
-		public BankingDbContext Db { get => db; set => db = value; }
-		private ObservableCollection<Bank> Accounts { get; set; }
-		private ObservableCollection<Bank> FilteredAccounts { get; set; }
+		#region [ Fields ]
+
+		private readonly bool HasMissedTallies;
+		private readonly MainViewModel MainVM;
 		private readonly OptionViewModel Options;
 
-    public List<string> Tallies { get; set; } = new List<string>();
+		#endregion
+
+		#region [ Properties ]
+
+		private BankWindow View { get; set; }
+		public BankingDbContext Db { get; set; }
+		private ObservableCollection<Bank> Accounts { get; set; }
+		private ObservableCollection<Bank> FilteredAccounts { get; set; }
+		public List<string> Tallies { get; set; } = new List<string>();
 		public string AccountFilter { get; set; }
 
+		#endregion
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(string propertyName = "")
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
+		#region [ Constructions ]
 
 		public BankViewModel(OptionViewModel options, MainWindow parent, MainViewModel mainVM, bool hasMissedTallies = false)
-    {
-      Options = options;
+		{
+			Options = options;
 			MainVM = mainVM;
 			HasMissedTallies = hasMissedTallies;
 
-      OpenBankTable();
-      View = new BankWindow(this)
-      {
-        Top = parent.Top + 20,
-        Left = parent.Left + 20
-      };
+			OpenBankTable();
+			View = new BankWindow(this)
+			{
+				Top = parent.Top + 20,
+				Left = parent.Left + 20
+			};
 
 			bool? Result = View.ShowDialog();
 			if ((bool)Result)
 			{
-				db.Dispose();
+				Db.Dispose();
 			}
-
 		}
 
 		public BankViewModel(OptionViewModel options, OverviewWindow parent, MainViewModel mainVM, string tallyName, string month)
@@ -69,10 +67,21 @@ namespace Banking.ViewModels
 			bool? Result = View.ShowDialog();
 			if ((bool)Result)
 			{
-				db.Dispose();
+				Db.Dispose();
 			}
-
 		}
+
+		#endregion
+
+		#region [ Public methods ]
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void NotifyPropertyChanged(string propertyName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		#endregion
 
 		public async void OpenBankTable(string TallyName = null, string Month = null)
     {
@@ -121,7 +130,6 @@ namespace Banking.ViewModels
 				{
 					View.BankingDataGrid.ItemsSource = Accounts;
 				}
-
 			}
     }
 
@@ -150,9 +158,7 @@ namespace Banking.ViewModels
 					View.BankingDataGrid.ItemsSource = Accounts;
 				}
 			}
-
 		}
-
-
   }
+
 }

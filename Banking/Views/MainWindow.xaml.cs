@@ -17,7 +17,6 @@ namespace Banking
 
 		public MainWindow()
 		{
-
 			InitializeComponent();
 
 			Log.Write("Started banking");
@@ -26,7 +25,6 @@ namespace Banking
 
 			MainVM = new MainViewModel(this);
 			DataContext = MainVM;
-
 		}
 
 		#region Exit command

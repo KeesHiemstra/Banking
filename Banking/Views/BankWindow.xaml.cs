@@ -12,7 +12,7 @@ namespace Banking.Views
   /// </summary>
   public partial class BankWindow : Window
   {
-    private BankViewModel ModelView;
+    private readonly BankViewModel ModelView;
 
     public BankWindow(BankViewModel modelView)
     {
@@ -39,5 +39,6 @@ namespace Banking.Views
 		{
 			ModelView.OpenBankTable();
 		}
+
 	}
 }

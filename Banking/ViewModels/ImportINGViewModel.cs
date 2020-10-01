@@ -13,8 +13,7 @@ namespace Banking.ViewModels
 {
 	public class ImportINGViewModel
 	{
-
-		private List<Import> Cache = new List<Import>();
+		private readonly List<Import> Cache = new List<Import>();
 
 		public ImportINGViewModel(string fileName, OptionViewModel options)
 		{
@@ -47,7 +46,6 @@ namespace Banking.ViewModels
 
 		private bool ImportFile(string fileName)
 		{
-
 			bool result = true;
 			if (!File.Exists(fileName))
 			{
@@ -98,12 +96,10 @@ namespace Banking.ViewModels
 			}
 
 			return result;
-
 		}
 
 		private void ProcessLine(string line)
 		{
-
 			bool DivideBy100 = (decimal.Parse("1.25") == 125);
 
 			DateTime Date;
@@ -168,6 +164,6 @@ namespace Banking.ViewModels
 				RawText = Record[8]
 			});
 		}
-
 	}
+
 }

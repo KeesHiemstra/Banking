@@ -28,21 +28,18 @@ namespace Banking.ViewModels
 
     private async void OpenImportTable()
     {
-      using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
-      {
-        var Imports = await (from a in db.Imports
-                             orderby a.Date descending
-                             select a).ToListAsync();
-        View.ImportDataGrid.ItemsSource = Imports;
-      }
-    }
+			using BankingDbContext db = new BankingDbContext(Options.DbConnection);
+			var Imports = await (from a in db.Imports
+													 orderby a.Date descending
+													 select a).ToListAsync();
+			View.ImportDataGrid.ItemsSource = Imports;
+		}
 
     public void OpenImport(Import import)
     {
       ImportDetailViewModel detailMV = new ImportDetailViewModel();
       detailMV.ShowAccount(View, import);
     }
-
 
   }
 }

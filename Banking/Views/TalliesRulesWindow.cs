@@ -13,15 +13,13 @@ namespace Banking.Views
   public partial class TalliesRulesWindow : Window
   {
 
-    TalliesRulesViewModel RulesVM;
+    private readonly TalliesRulesViewModel RulesVM;
 
     public TalliesRulesWindow(TalliesRulesViewModel rulesVM)
     {
-
       InitializeComponent();
       RulesVM = rulesVM;
       DataContext = rulesVM;
-
     }
 
     private void TalliesRulesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,7 +80,6 @@ namespace Banking.Views
     }
 
     #endregion
-
 
   }
 }

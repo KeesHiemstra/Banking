@@ -11,13 +11,12 @@ namespace Banking.ViewModels
 {
 	public class ImportABNViewModel
 	{
-		private List<Import> Cache = new List<Import>();
+		private readonly List<Import> Cache = new List<Import>();
 
 		public ImportABNViewModel(string fileName, OptionViewModel options)
 		{
 			Log.Write("Starting ABN import");
 			ProcessImportABNModelView(fileName, options);
-
 		}
 
 		private void ProcessImportABNModelView(string fileName, OptionViewModel options)
@@ -47,12 +46,10 @@ namespace Banking.ViewModels
 					throw new ImportException("Import ABN file has failed");
 				}
 			}
-
 		}
 
 		private bool ImportFile(string fileName)
 		{
-
 			bool result = true;
 			if (!File.Exists(fileName))
 			{
@@ -66,16 +63,14 @@ namespace Banking.ViewModels
 			{
 				string Line = string.Empty;
 
-				using (StreamReader sr = new StreamReader(fileName))
+				using StreamReader sr = new StreamReader(fileName);
+				while (sr.Peek() >= 0)
 				{
-					while (sr.Peek() >= 0)
+					Line = sr.ReadLine();
+					Count++;
+					if (Count > 0)
 					{
-						Line = sr.ReadLine();
-						Count++;
-						if (Count > 0)
-						{
-							ProcessLine(Line);
-						}
+						ProcessLine(Line);
 					}
 				}
 			}
@@ -93,12 +88,10 @@ namespace Banking.ViewModels
 			}
 
 			return result;
-
 		}
 
 		private void ProcessLine(string line)
 		{
-
 			bool DivideBy100 = (decimal.Parse("1.25") == 125);
 
 			DateTime Date;
@@ -199,12 +192,10 @@ namespace Banking.ViewModels
 			{
 				Log.Write($"Error in record {Cache.Count}. Field 'RawText' is too long ({record.RawText.Length})");
 			}
-
 		}
 
 		private void ProcessRecord(Import record)
 		{
-
 			string Search;
 			int Count;
 			int Start;
@@ -472,7 +463,7 @@ namespace Banking.ViewModels
 			{
 				record.Text = record.Text.Replace("  ", " ");
 			}
-
 		}//ProcessRecord
 	}
+
 }

@@ -1,7 +1,4 @@
-﻿using CHi.Extensions;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 
 namespace Banking.ViewModels
 {
@@ -15,7 +12,6 @@ namespace Banking.ViewModels
 
 		private void DictImportToBank()
 		{
-
 			ImportToBank.Add("Import to Bank", @"
 INSERT INTO Bank(I.[Account], I.[Date], I.[Mutation], I.[Amount], I.[Name], I.[CounterAccount], I.[Text], I.[RawText])
 SELECT I.[Account], I.[Date], I.[Mutation], I.[Amount], I.[Name], I.[CounterAccount], I.[Text], I.[RawText]
@@ -28,14 +24,12 @@ FROM Import AS I
 WHERE B.[Id] IS NULL
 ORDER BY I.[Date], I.[Account];
 ");
-
 			ImportToBank.Add("Month", @"
 UPDATE Bank
 SET [Month] = CAST(YEAR([Date]) AS varchar(4)) + '-' + RIGHT('0' + CAST(MONTH([Date]) AS varchar(2)), 2)
 FROM Bank
 WHERE [Month] IS NULL
 ");
-
 		}
 
 		private void DictPostImport()

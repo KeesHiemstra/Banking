@@ -22,46 +22,39 @@ namespace Banking.ViewModels
 			ProcessImportToBankAsync();
 			ProcessMissedTallies();
 			ProcessPostImportAsync();
-
 		}
 
 		private int CheckMissedTallies()
 		{
-
 			List<Bank> Missed = MainVM.Accounts
 				.Where(x => x.TallyName is null)
 				.ToList();
 
 			return Missed.Count;
-
 		}
+
 		private string Log(string message)
 		{
-
 			string LogFileName = Assembly.GetEntryAssembly().Location.Replace(".exe", ".log");
 
 			using (StreamWriter stream = new StreamWriter(LogFileName, true))
 			{
-				stream.WriteLine($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {message}");
+				stream.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {message}");
 			}
 
 			return message;
-
 		}
 
 		private string Log(string process, int updates)
 		{
-
 			string message = $"'{process}' resulted in {updates} updates";
 			Log(message);
 
 			return message;
-
 		}
 
 		private async Task ProcessImportToBankAsync()
 		{
-
 			int updates;
 
 			Log($"Start ProcessImportToBank() with {CheckMissedTallies()} missed tallies");
@@ -89,12 +82,10 @@ namespace Banking.ViewModels
 			await MainVM.GetAccountSummaryAsync();
 			MissedTalliesCount = CheckMissedTallies();
 			Log($"After ProcessImportToBank() has {MissedTalliesCount} missed tallies");
-
 		}
 
 		private async Task ProcessMissedTallies()
 		{
-
 			int updates;
 			int totalUpdates = 0;
 
@@ -132,12 +123,10 @@ namespace Banking.ViewModels
 			await MainVM.GetAccountSummaryAsync();
 			MissedTalliesCount = CheckMissedTallies();
 			Log($"After ProcessImportToBank() has {MissedTalliesCount} missed tallies");
-
 		}
 
 		private async Task ProcessPostImportAsync()
 		{
-
 			int updates;
 
 			DictPostImport();
@@ -159,9 +148,7 @@ namespace Banking.ViewModels
 			}
 
 			PostImport.Clear();
-
 		}
-
 
 	}
 }

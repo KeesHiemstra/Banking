@@ -1,18 +1,21 @@
 ﻿using Banking.Models;
 using Banking.Views;
+
 using System;
-using System.Linq;
 
 namespace Banking.ViewModels
 {
 	public class BalanceViewModel
 	{
     #region [ Fields ]
+
     private EditBalanceWindow EditBalanceView { get; set; }
 		private BalanceAmount CurrentAmount;
+
     #endregion
 
     #region [ Properties ]
+
     public MainViewModel MainVM { get; set; }
 		public BalanceWindow BalanceView { get; set; }
 
@@ -22,13 +25,18 @@ namespace Banking.ViewModels
 		public string EditAccount { get; set; }
 		public DateTime EditDate { get; set; }
 		public decimal? EditAmount { get; set; }
-    #endregion
 
-    public BalanceViewModel(MainViewModel mainVM, BalanceWindow balanceWindow)
+		#endregion
+
+		#region [ Constructions ]
+
+		public BalanceViewModel(MainViewModel mainVM, BalanceWindow balanceWindow)
 		{
 			MainVM = mainVM;
 			BalanceView = balanceWindow;
 		}
+
+		#endregion
 
 		public int SelectBalance(int selectBalance)
 		{

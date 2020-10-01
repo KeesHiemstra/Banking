@@ -11,7 +11,6 @@ namespace Banking.ViewModels
 		public OVCardList ListView { get; set; }
 		public List<OVCard> Cards { get; set; }
 
-
 		public OVCardViewModel(OptionViewModel options, OVCardList listView)
 		{
 			Options = options;
@@ -22,15 +21,12 @@ namespace Banking.ViewModels
 
 		private void OpenCards()
 		{
-
-			using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
-			{
-				var cards = (from a in db.OVCards
-										 orderby a.Id descending
-										 select a).ToList();
-				Cards = new List<OVCard>(cards);
-			}
-
+			using BankingDbContext db = new BankingDbContext(Options.DbConnection);
+			var cards = (from a in db.OVCards
+									 orderby a.Id descending
+									 select a).ToList();
+			Cards = new List<OVCard>(cards);
 		}
+
 	}
 }

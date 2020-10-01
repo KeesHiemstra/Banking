@@ -9,8 +9,8 @@ namespace Banking.ViewModels
 {
 	public class OverviewViewModel : INotifyPropertyChanged
 	{
-		private MainViewModel MainVM;
-		private OverviewWindow View;
+		private readonly MainViewModel MainVM;
+		private readonly OverviewWindow View;
 
 		private List<string> Tallies { get; set; } = new List<string>();
 		private List<(string Month, string Tally, decimal SumAmount)> Pivot { get; set; } = 
@@ -31,32 +31,25 @@ namespace Banking.ViewModels
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(string propertyName = "")
 		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 		#endregion
 
-		#region ctor
-		//public OverviewModelView() { }
+		#region [ Construction ]
 
 		public OverviewViewModel(OverviewWindow view, MainViewModel mainViewModel)
 		{
-
 			MainVM = mainViewModel;
 			if (MainVM.HasMissedTallies) { return; }
 
 			View = view;
-
 		}
+
 		#endregion
 
 		public void FilterAccountList(string TallyName, string Month)
 		{
-
 			_ = new BankViewModel(MainVM.Options, View, MainVM, TallyName, Month);
-
 		}
 
 		public void SelectOverview(OverviewItem item)
@@ -105,12 +98,10 @@ namespace Banking.ViewModels
 			View.PivotDataGrid.ItemsSource = null;
 			PivotView = new DataView(Data.Tables["Pivot"]);
 			View.PivotDataGrid.ItemsSource = PivotView;
-
 		}
 
 		public void ExportPivot()
 		{
-
 			string export = string.Empty;
 			foreach (var item in Data.Tables[0].Columns)
 			{
@@ -128,7 +119,6 @@ namespace Banking.ViewModels
 			}
 
 			Clipboard.SetText(export);
-
 		}
 
 		/// <summary>
@@ -157,7 +147,6 @@ namespace Banking.ViewModels
 		/// <returns></returns>
 		private List<(string Month, string Tally, decimal SumAmount)> GetPivot(bool isPositiveAmounts, string originName)
 		{
-
 			List<(string Month, string Tally, decimal SumAmount)> result = MainVM.Accounts
 				.Where(x => originName == "Alles" ? (x.Amount != 0) :
 					(isPositiveAmounts ? (x.Amount > 0) :
@@ -173,7 +162,6 @@ namespace Banking.ViewModels
 				}).ToList();
 
 			return result;
-
 		}
 
 		/// <summary>
@@ -181,7 +169,6 @@ namespace Banking.ViewModels
 		/// </summary>
 		private void CreatePivotTable()
 		{
-
 			if (Data.Tables.Count > 0) { Data.Tables.Clear(); };
 
 			DataTable pivot = new DataTable("Pivot");
@@ -198,7 +185,6 @@ namespace Banking.ViewModels
 			};
 
 			Data.Tables.Add(pivot);
-
 		}
 
 		/// <summary>
@@ -206,7 +192,6 @@ namespace Banking.ViewModels
 		/// </summary>
 		private void FillPivotTable()
 		{
-
 			DataRow row = null;
 			string month = string.Empty;
 			for (int i = 0; i < Pivot.Count - 1; i++)
@@ -226,7 +211,6 @@ namespace Banking.ViewModels
 			}
 
 			Data.Tables[0].Rows.Add(row);
-
 		}
 
 		public enum OverviewItem

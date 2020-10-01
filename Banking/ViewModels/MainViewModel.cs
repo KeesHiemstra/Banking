@@ -170,16 +170,13 @@ namespace Banking.ViewModels
 			
 			OpenBalances();
 			GetCurrentBalances();
-
 		}
 
 		private async void GetSummaries()
 		{
-
 			await GetAccountSummaryAsync();
 			await GetImportSummaryAsync();
 			CheckMissedTallies();
-
 		}
 
 		public async Task GetAccountSummaryAsync()
@@ -195,12 +192,10 @@ namespace Banking.ViewModels
 #endif
 			CheckMissedTallies();
 			NotifyPropertyChanged();
-
 		}
 
 		private async Task GetImportSummaryAsync()
 		{
-
 			using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
 			{
 				var imports = await (from a in db.Imports
@@ -208,12 +203,10 @@ namespace Banking.ViewModels
 				Imports = new ObservableCollection<Import>(imports);
 			}
 			NotifyPropertyChanged();
-
 		}
 
 		private int CheckMissedTallies()
 		{
-
 			List<Bank> Missed = Accounts
 				.Where(x => x.TallyName is null)
 				.OrderBy(x => (x.Account, x.Date))
@@ -222,19 +215,16 @@ namespace Banking.ViewModels
 			MissedTalliesCount = Missed.Count;
 			HasMissedTallies = MissedTalliesCount > 0;
 			return MissedTalliesCount;
-
 		}
 
 		private void SetDbConnection()
 		{
-
 			if (File.Exists(Options.JsonPath))
 			{
 				using StreamReader stream = File.OpenText(Options.JsonPath);
 				string json = stream.ReadToEnd();
 				Options = JsonConvert.DeserializeObject<OptionViewModel>(json);
 			}
-
 		}
 
 		public void ShowBankList()
@@ -249,7 +239,6 @@ namespace Banking.ViewModels
 
 		public async Task ShowOverviewAsync()
 		{
-
 			List<Bank> missed = Accounts
 				.Where(x => x.TallyName is null)
 				.ToList();
@@ -270,12 +259,10 @@ namespace Banking.ViewModels
 			{
 				_ = new OverviewWindow(this);
 			}
-
 		}
 
 		public void ShowOverview()
 		{
-
 			List<Bank> missed = Accounts
 				.Where(x => x.TallyName is null)
 				.ToList();
@@ -296,21 +283,17 @@ namespace Banking.ViewModels
 			{
 				_ = new OverviewWindow(this);
 			}
-
 		}
 
 		private void OpenBalances()
 		{
-
 			if (File.Exists(BALANCE))
 			{
 				try
 				{
-					using (StreamReader stream = File.OpenText(BALANCE))
-					{
-						string json = stream.ReadToEnd();
-						Balances = JsonConvert.DeserializeObject<ObservableCollection<Balance>>(json);
-					}
+					using StreamReader stream = File.OpenText(BALANCE);
+					string json = stream.ReadToEnd();
+					Balances = JsonConvert.DeserializeObject<ObservableCollection<Balance>>(json);
 				}
 				catch (Exception ex)
 				{
@@ -321,20 +304,16 @@ namespace Banking.ViewModels
 						MessageBoxImage.Warning);
 				} 
 			}
-
 		}
 
 		public void ShowBalances()
 		{
-
 			BalanceWindow balanceWindow = new BalanceWindow(this);
 			balanceWindow.ShowDialog();
-
 		}
 
 		public void CloseWindow()
 		{
-
 			if (ToSaveBalances)
 			{
 				SaveBalances();
@@ -346,19 +325,14 @@ namespace Banking.ViewModels
 
 		public void SaveBalances()
 		{
-
 			string json = JsonConvert.SerializeObject(Balances, Formatting.Indented);
-			using (StreamWriter stream = new StreamWriter(BALANCE))
-			{
-				stream.Write(json);
-			}
+			using StreamWriter stream = new StreamWriter(BALANCE);
+			stream.Write(json);
 			Log.Write("Balances are saved");
-
 		}
 
 		public void GetCurrentBalances()
 		{
-
 			CurrentBalances.Clear();
 
 			foreach (Balance balance in Balances)
@@ -382,12 +356,10 @@ namespace Banking.ViewModels
 					Diffence = current[0].Difference
 				});
 			}
-
 		}
 
 		public void Backup()
 		{
-
 			if (!Directory.Exists(Options.BackupPath.TranslatePath()))
 			{
 				Log.Write($"Folder '{Options.BackupPath}' doesn't exist");
@@ -447,7 +419,6 @@ namespace Banking.ViewModels
 				"Backup", 
 				MessageBoxButton.OK, 
 				MessageBoxImage.Information);
-
 		}
 
 		public void ShowOVCardList()
@@ -482,7 +453,6 @@ namespace Banking.ViewModels
 					MessageBoxButton.OK,
 					MessageBoxImage.Warning);
 			}
-
 		}
 
 		internal void ShowTalliesRules()

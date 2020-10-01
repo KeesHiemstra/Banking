@@ -10,7 +10,7 @@ namespace Banking.Views
   /// </summary>
   public partial class BankAccountWindow : Window
   {
-    BankAccountViewModel AccountVM;
+    private readonly BankAccountViewModel AccountVM;
 
     public BankAccountWindow(BankAccountViewModel account)
     {
@@ -49,7 +49,6 @@ namespace Banking.Views
 
     private void CancelCommand_Execute(object sender, ExecutedRoutedEventArgs e)
     {
-
       DialogResult = false;
     }
 

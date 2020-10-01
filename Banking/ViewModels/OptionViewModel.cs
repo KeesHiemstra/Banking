@@ -31,8 +31,6 @@ namespace Banking.ViewModels
           dbConnection = value;
           NotifyPropertyChanged();
         }
-        //Is this needed?
-        //dbConnection = value;
       }
     }
 
@@ -111,16 +109,14 @@ namespace Banking.ViewModels
       }
     }
     [JsonIgnore]
-    public string JsonPath => System.Reflection.Assembly.GetEntryAssembly().Location.Replace(".exe", ".json");
+    public string JsonPath => 
+      System.Reflection.Assembly.GetEntryAssembly().Location.Replace(".exe", ".json");
 
     public event PropertyChangedEventHandler PropertyChanged;
     private void NotifyPropertyChanged(string propertyName = "")
     {
-      if (PropertyChanged != null)
-      {
-        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 
     #endregion
 
@@ -138,16 +134,12 @@ namespace Banking.ViewModels
       if ((bool)Result)
       {
         string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-        using (StreamWriter stream = new StreamWriter(JsonPath))
-        {
-          stream.Write(json);
-        }
-      }
+				using StreamWriter stream = new StreamWriter(JsonPath);
+				stream.Write(json);
+			}
     }
 
     #endregion
 
-
   }
-
 }

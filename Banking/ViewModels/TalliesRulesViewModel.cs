@@ -12,18 +12,18 @@ namespace Banking.ViewModels
   public class TalliesRulesViewModel : INotifyPropertyChanged
   {
 
-    #region [ Fields ]
+		#region [ Fields ]
 
-    Window Parent;
-    TalliesRulesWindow RulesView;
-    MainViewModel MainVM;
+		private readonly Window Parent;
+    private TalliesRulesWindow RulesView;
+    private readonly MainViewModel MainVM;
 
-    private string tallyName;
     private string fullTallyName;
+    private string orginalFullTallyName;
     private string sql;
+    private string tallyName;
     private bool isUpdatedRule = false;
     private bool isNewRule = false;
-    private string orginalFullTallyName;
 
     #endregion
 
@@ -97,19 +97,16 @@ namespace Banking.ViewModels
 
     private void NotifyPropertyChanged(string propertyName = "")
     {
-      if (PropertyChanged != null)
-      {
-        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
     #endregion
 
     #endregion
 
     #region [ Constructor ] 
+
     public TalliesRulesViewModel(Window view, MainViewModel mainVM)
     {
-
       Parent = view;
       MainVM = mainVM;
 
@@ -117,13 +114,12 @@ namespace Banking.ViewModels
       {
         MainVM.ReadTalliesRules();
       }
-
     }
+
     #endregion
 
     public bool? ShowTalliesRules()
     {
-
       RulesView = new TalliesRulesWindow(this)
       {
         Left = Parent.Left + 20,
@@ -144,12 +140,10 @@ namespace Banking.ViewModels
 
       RulesView.Owner = Parent;
       return RulesView.ShowDialog();
-
     }
 
     public void SelectItem(KeyValuePair<string, string> keyValue)
     {
-
       string Pattern = @"\s+\d{3}$";
       Regex check = new Regex(Pattern);
 
@@ -159,7 +153,6 @@ namespace Banking.ViewModels
       Sql = keyValue.Value;
 
       IsUpdatedRule = false;
-
     }
 
     internal void RecordIsUpdated()

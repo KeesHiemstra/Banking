@@ -34,6 +34,5 @@ namespace Banking.Views
       ModelView.OpenImport((Import)((DataGrid)sender).CurrentItem);
     }
 
-
   }
 }

@@ -17,7 +17,6 @@ namespace Banking.Views
 
 		public BalanceWindow(MainViewModel mainModelView )
 		{
-
 			InitializeComponent();
 
 			MainMV = mainModelView;
@@ -28,18 +27,15 @@ namespace Banking.Views
 			DataContext = MainMV;
 			BalanceNameComboBox.ItemsSource = MainMV.Balances;
 			BalanceNameComboBox.SelectedIndex = BalanceMV.SelectBalance(0);
-
 		}
 
 		private void BalanceNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-
 			int selectedBalance = (int)((ComboBox)sender).SelectedIndex;
 			if (selectedBalance >= 0 && selectedBalance < BalanceMV.MainVM.Balances.Count)
 			{
 				BalanceMV.SelectBalance(selectedBalance);
 			}
-
 		}
 
 		private void NewAccountButton_Click(object sender, RoutedEventArgs e)
@@ -56,5 +52,6 @@ namespace Banking.Views
 		{
 			BalanceMV.EditBalance((BalanceAmount)((DataGrid)sender).CurrentItem);
 		}
+
 	}
 }
