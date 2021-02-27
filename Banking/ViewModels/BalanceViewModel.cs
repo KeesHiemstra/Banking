@@ -2,6 +2,7 @@
 using Banking.Views;
 
 using System;
+using System.Linq;
 
 namespace Banking.ViewModels
 {
@@ -44,7 +45,8 @@ namespace Banking.ViewModels
 
 			if (MainVM.Balances.Count > 0)
 			{
-				BalanceView.BalanceAmountDataGrid.ItemsSource = MainVM.Balances[selectBalance].Amounts;
+				BalanceView.BalanceAmountDataGrid.ItemsSource = MainVM.Balances[selectBalance].Amounts
+					.OrderByDescending(x => x.Date);
 			}
 
 			return selectBalance;
@@ -146,7 +148,9 @@ namespace Banking.ViewModels
 			};
 			EditBalanceView.AmountTextBox.Focus();
 			EditBalanceView.ShowDialog();
+			SelectBalance(SelectedBalance);
 		}
+
 	}
 
 }

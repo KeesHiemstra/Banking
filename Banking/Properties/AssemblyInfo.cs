@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CHi")]
 [assembly: AssemblyProduct("Banking")]
-[assembly: AssemblyCopyright("Copyright © Kees Hiemstra 2019-2020")]
+[assembly: AssemblyCopyright("Copyright © Kees Hiemstra 2019-2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.2.2.64")]
-[assembly: AssemblyFileVersion("2.2.2.64")]
+[assembly: AssemblyVersion("2.2.2.65")]
+[assembly: AssemblyFileVersion("2.2.2.65")]

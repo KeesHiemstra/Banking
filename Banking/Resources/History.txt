@@ -1,3 +1,6 @@
+Version 2.2.2.65 (2021-02-27)
+* Ordered the balances, the newest as the first.
+
 Version 2.2.2.64 (2020-10-01)
 * Simplified declaration.
 
