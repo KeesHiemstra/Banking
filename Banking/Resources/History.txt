@@ -1,3 +1,6 @@
+Version 2.2.2.66 (2021-04-29)
+* Updated Newtonsoft.Json.
+
 Version 2.2.2.65 (2021-02-27)
 * Ordered the balances, the newest as the first.
 
