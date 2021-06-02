@@ -36,103 +36,104 @@ namespace Banking.ViewModels
 		#region [ Properties ] 
 
 		public OptionViewModel Options { get; set; }
-    public ObservableCollection<Bank> Accounts { get; set; } = new ObservableCollection<Bank>();
-    public ObservableCollection<Import> Imports { get; set; } = new ObservableCollection<Import>();
-    public bool ToSaveBalances { get; set; } = false;
-    public ObservableCollection<Balance> Balances { get; set; } =
-      new ObservableCollection<Balance>();
-    public ObservableCollection<CurrentBalance> CurrentBalances { get; set; } =
-      new ObservableCollection<CurrentBalance>();
+		public ObservableCollection<Bank> Accounts { get; set; } = new ObservableCollection<Bank>();
+		public ObservableCollection<Import> Imports { get; set; } = new ObservableCollection<Import>();
+		public List<string> Origins { get; set; }
+		public bool ToSaveBalances { get; set; } = false;
+		public ObservableCollection<Balance> Balances { get; set; } =
+			new ObservableCollection<Balance>();
+		public ObservableCollection<CurrentBalance> CurrentBalances { get; set; } =
+			new ObservableCollection<CurrentBalance>();
 
 
-    public int AccountCount
-    {
-      get => Accounts.Count;
-    }
+		public int AccountCount
+		{
+			get => Accounts.Count;
+		}
 
-    public DateTime? AccountMaxDate
-    {
-      get
-      {
-        if (AccountCount == 0)
-        {
-          return null;
-        }
-        return Accounts.Max(x => x.Date);
-      }
-    }
+		public DateTime? AccountMaxDate
+		{
+			get
+			{
+				if (AccountCount == 0)
+				{
+					return null;
+				}
+				return Accounts.Max(x => x.Date);
+			}
+		}
 
-    public int ImportCount
-    {
-      get => Imports.Count;
-    }
+		public int ImportCount
+		{
+			get => Imports.Count;
+		}
 
-    public DateTime? ImportMaxDate
-    {
-      get
-      {
-        if (ImportCount == 0)
-        {
-          return null;
-        }
-        return Imports.Max(x => x.Date);
-      }
-    }
+		public DateTime? ImportMaxDate
+		{
+			get
+			{
+				if (ImportCount == 0)
+				{
+					return null;
+				}
+				return Imports.Max(x => x.Date);
+			}
+		}
 
-    public DateTime? ImportMinDate
-    {
-      get
-      {
-        if (ImportCount == 0)
-        {
-          return null;
-        }
-        return Imports.Min(x => x.Date);
-      }
-    }
+		public DateTime? ImportMinDate
+		{
+			get
+			{
+				if (ImportCount == 0)
+				{
+					return null;
+				}
+				return Imports.Min(x => x.Date);
+			}
+		}
 
-    public DateTime? ImportDate
-    {
-      get
-      {
-        if (ImportCount == 0)
-        {
-          return null;
-        }
-        return Imports.Max(x => x.ImportDate);
-      }
-    }
+		public DateTime? ImportDate
+		{
+			get
+			{
+				if (ImportCount == 0)
+				{
+					return null;
+				}
+				return Imports.Max(x => x.ImportDate);
+			}
+		}
 
-    public int MissedTalliesCount
-    {
-      get => missedTalliesCount;
-      set
-      {
-        if (missedTalliesCount != value)
-        {
-          missedTalliesCount = value;
-          NotifyPropertyChanged();
-        }
-      }
-    }
+		public int MissedTalliesCount
+		{
+			get => missedTalliesCount;
+			set
+			{
+				if (missedTalliesCount != value)
+				{
+					missedTalliesCount = value;
+					NotifyPropertyChanged();
+				}
+			}
+		}
 
-    public bool HasMissedTallies
-    {
-      get => hasMissedTallies;
-      set
-      {
-        if (hasMissedTallies != value)
-        {
-          hasMissedTallies = value;
-          NotifyPropertyChanged();
-        }
-      }
-    }
+		public bool HasMissedTallies
+		{
+			get => hasMissedTallies;
+			set
+			{
+				if (hasMissedTallies != value)
+				{
+					hasMissedTallies = value;
+					NotifyPropertyChanged();
+				}
+			}
+		}
 
-    #endregion
+		#endregion
 
-    #region INotifyPropertyChanged
-    public event PropertyChangedEventHandler PropertyChanged;
+		#region INotifyPropertyChanged
+		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(string propertyName = "") => 
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		#endregion
@@ -152,21 +153,21 @@ namespace Banking.ViewModels
 			ImportFileFilters.Add("ABN", "ABN import file (*.tab)|*.tab");
 			ImportFileFilters.Add("ING", "ING import file (*.csv)|*.csv");
 
-      string jsonPath = "%OneDrive%\\Data\\Banking\\AccountNames.json".TranslatePath();
-      if (File.Exists(jsonPath))
-      {
+			string jsonPath = "%OneDrive%\\Data\\Banking\\AccountNames.json".TranslatePath();
+			if (File.Exists(jsonPath))
+			{
 				using StreamReader stream = File.OpenText(jsonPath);
 				string json = stream.ReadToEnd();
 				AccountNames = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 			}
-      else
-      {
+			else
+			{
 				MessageBox.Show($"The file 'jsonPath' doesn't exist",
 					"AccountNames json",
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation);
 				Application.Current.Shutdown();
-      }
+			}
 			
 			OpenBalances();
 			GetCurrentBalances();
@@ -183,13 +184,14 @@ namespace Banking.ViewModels
 		{
 			using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
 			{
-				var accounts = await (from a in db.Accounts
-															select a).ToListAsync();
+				List<Bank> accounts = await (from a in db.Accounts
+																		 select a).ToListAsync();
 				Accounts = new ObservableCollection<Bank>(accounts);
 			}
 #if DEBUG
 			Thread.Sleep(1000);
 #endif
+			GetOrigins();
 			CheckMissedTallies();
 			NotifyPropertyChanged();
 		}
@@ -198,11 +200,20 @@ namespace Banking.ViewModels
 		{
 			using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
 			{
-				var imports = await (from a in db.Imports
-														 select a).ToListAsync();
+				List<Import> imports = await (from a in db.Imports
+																			select a).ToListAsync();
 				Imports = new ObservableCollection<Import>(imports);
 			}
 			NotifyPropertyChanged();
+		}
+
+		private void GetOrigins()
+		{
+			Origins = new List<string>(Accounts
+				.Select(x => x.Origin)
+				.OrderBy(x => x)
+				.Distinct()
+				.ToList());
 		}
 
 		private int CheckMissedTallies()
@@ -401,11 +412,11 @@ namespace Banking.ViewModels
 			}
 
 			backupFile = $"{backupFolder}\\Balance.json";
-      if (File.Exists(BALANCE))
-      {
-        File.Copy(BALANCE, backupFile);
+			if (File.Exists(BALANCE))
+			{
+				File.Copy(BALANCE, backupFile);
 				Log.Write("Balance file is copied");
-      }
+			}
 
 			backupFile = $"{backupFolder}\\TalliesRules.json";
 			string TalliesRulesJson = "%OneDrive%\\Data\\Banking\\TalliesRules.json".TranslatePath();
@@ -427,13 +438,13 @@ namespace Banking.ViewModels
 			window.ShowDialog();
 		}
 
-    public void ShowHistory() => _ = new HistoryWindow()
-    {
-      Left = View.Left + 20,
-      Top = View.Top + 20
-    }.ShowDialog();
+		public void ShowHistory() => _ = new HistoryWindow()
+		{
+			Left = View.Left + 20,
+			Top = View.Top + 20
+		}.ShowDialog();
 
-    public void ShowLastBackup()
+		public void ShowLastBackup()
 		{
 			DateTime backupFileTime;
 			var backups = Directory.EnumerateFiles(Options.BackupPath.TranslatePath(), $"{Options.DbName}-*.bak").OrderByDescending(x => x);

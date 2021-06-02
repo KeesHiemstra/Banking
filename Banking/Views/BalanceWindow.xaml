@@ -1,74 +1,81 @@
-﻿<Window x:Class="Banking.Views.BalanceWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Banking.Views"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="Balance"
-        Width="260"
-        Height="450"
-        ShowInTaskbar="False"
-        Topmost="True"
-        mc:Ignorable="d">
-	<Grid Margin="5">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
+﻿<Window
+  x:Class="Banking.Views.BalanceWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:Banking.Views"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Title="Balance"
+  Width="260"
+  Height="450"
+  ShowInTaskbar="False"
+  Topmost="True"
+  mc:Ignorable="d">
+  <Grid Margin="5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-		<ComboBox Name="BalanceNameComboBox"
-		          Grid.Row="0"
-		          DisplayMemberPath="Name"
-		          IsEditable="False"
-		          ItemsSource="{Binding Balances}"
-		          SelectionChanged="BalanceNameComboBox_SelectionChanged"/>
+    <ComboBox
+      Name="BalanceNameComboBox"
+      Grid.Row="0"
+      DisplayMemberPath="Name"
+      IsEditable="False"
+      ItemsSource="{Binding Balances}"
+      SelectionChanged="BalanceNameComboBox_SelectionChanged" />
 
-		<DataGrid Name="BalanceAmountDataGrid"
-		          Grid.Row="1"
-		          AutoGenerateColumns="False"
-		          IsReadOnly="True"
-		          ItemsSource="{Binding BalanceAmount}"
-							MouseDoubleClick="BalanceAmountDataGrid_MouseDoubleClick">
-			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding Date, StringFormat=yyyy-MM-dd}"
-                            Header="Date" 
-                            SortDirection="Descending"/>
-				<DataGridTextColumn MinWidth="70"
-				                    Binding="{Binding Amount, StringFormat=0.00}"
-				                    Header="Balance">
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="TextBlock">
-							<Setter Property="HorizontalAlignment" Value="Right" />
-							<Setter Property="Margin" Value="0,0,2,0" />
-						</Style>
-					</DataGridTextColumn.ElementStyle>
-				</DataGridTextColumn>
-				<DataGridTextColumn MinWidth="70"
-				                    Binding="{Binding Difference, StringFormat=0.00}"
-				                    Header="Diff">
-					<DataGridTextColumn.ElementStyle>
-						<Style TargetType="TextBlock">
-							<Setter Property="HorizontalAlignment" Value="Right" />
-							<Setter Property="Margin" Value="0,0,2,0" />
-						</Style>
-					</DataGridTextColumn.ElementStyle>
-				</DataGridTextColumn>
-			</DataGrid.Columns>
-		</DataGrid>
+    <DataGrid
+      Name="BalanceAmountDataGrid"
+      Grid.Row="1"
+      AutoGenerateColumns="False"
+      IsReadOnly="True"
+      ItemsSource="{Binding BalanceAmount}"
+      MouseDoubleClick="BalanceAmountDataGrid_MouseDoubleClick">
+      <DataGrid.Columns>
+        <DataGridTextColumn
+          Binding="{Binding Date, StringFormat=yyyy-MM-dd}"
+          Header="Date"
+          SortDirection="Descending" />
+        <DataGridTextColumn
+          MinWidth="70"
+          Binding="{Binding Amount, StringFormat=0.00}"
+          Header="Balance">
+          <DataGridTextColumn.ElementStyle>
+            <Style TargetType="TextBlock">
+              <Setter Property="HorizontalAlignment" Value="Right" />
+              <Setter Property="Margin" Value="0,0,2,0" />
+            </Style>
+          </DataGridTextColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn
+          MinWidth="70"
+          Binding="{Binding Difference, StringFormat=0.00}"
+          Header="Diff">
+          <DataGridTextColumn.ElementStyle>
+            <Style TargetType="TextBlock">
+              <Setter Property="HorizontalAlignment" Value="Right" />
+              <Setter Property="Margin" Value="0,0,2,0" />
+            </Style>
+          </DataGridTextColumn.ElementStyle>
+        </DataGridTextColumn>
+      </DataGrid.Columns>
+    </DataGrid>
 
-		<StackPanel Orientation="Horizontal"
-								Grid.Row="2">
-			<Button Name="NewAccountButton" 
-							Content="New _Account" 
-							Click="NewAccountButton_Click"
-							Padding="5,0,5,0"
-							Margin="0,5,5,0"/>
-			<Button Name="NewBalanceButton" 
-							Content="New _Balance" 
-							Click="NewBalanceButton_Click"
-							Padding="5,0,5,0"
-							Margin="0,5,5,0"/>
-		</StackPanel>
-	</Grid>
+    <StackPanel Grid.Row="2" Orientation="Horizontal">
+      <Button
+        Name="NewAccountButton"
+        Margin="0,5,5,0"
+        Padding="5,0,5,0"
+        Click="NewAccountButton_Click"
+        Content="New _Account" />
+      <Button
+        Name="NewBalanceButton"
+        Margin="0,5,5,0"
+        Padding="5,0,5,0"
+        Click="NewBalanceButton_Click"
+        Content="New _Balance" />
+    </StackPanel>
+  </Grid>
 </Window>

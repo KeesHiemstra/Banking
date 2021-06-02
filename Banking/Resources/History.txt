@@ -1,3 +1,6 @@
+Version 2.2.2.67 (2021-06-02)
+* BankAccount improved to select the origin.
+
 Version 2.2.2.66 (2021-04-29)
 * Updated Newtonsoft.Json.
 

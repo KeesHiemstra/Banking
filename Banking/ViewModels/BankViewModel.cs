@@ -9,7 +9,7 @@ using System.Linq;
 namespace Banking.ViewModels
 {
 	public class BankViewModel : INotifyPropertyChanged
-  {
+	{
 
 		#region [ Fields ]
 
@@ -84,12 +84,12 @@ namespace Banking.ViewModels
 		#endregion
 
 		public async void OpenBankTable(string TallyName = null, string Month = null)
-    {
+		{
 			Db = new BankingDbContext(Options.DbConnection);
-      {
-        var accounts = await(from a in Db.Accounts
-                             orderby a.Date descending
-                             select a).ToListAsync();
+			{
+				List<Bank> accounts = await (from a in Db.Accounts
+																		 orderby a.Date descending
+																		 select a).ToListAsync();
 				Accounts = new ObservableCollection<Bank>(accounts);
 
 				Tallies = Accounts
@@ -100,17 +100,18 @@ namespace Banking.ViewModels
 
 				if (HasMissedTallies)
 				{
-					var filteredAccounts = Accounts
+					List<Bank> filteredAccounts = Accounts
 						.Where(x => x.TallyName is null)
 						.ToList();
 
 					FilteredAccounts = new ObservableCollection<Bank>(filteredAccounts);
 					View.BankingDataGrid.ItemsSource = FilteredAccounts;
+					View.Title = "Gemiste markeringen";
 				}
 				else if (!(string.IsNullOrWhiteSpace(TallyName) && string.IsNullOrWhiteSpace(Month)))
 				{
-					var filteredAccounts = Accounts
-						.Where(x => (x.TallyName == TallyName && x.Month == Month))
+					List<Bank> filteredAccounts = Accounts
+						.Where(x => x.TallyName == TallyName && x.Month == Month)
 						.ToList();
 
 					FilteredAccounts = new ObservableCollection<Bank>(filteredAccounts);
@@ -118,9 +119,9 @@ namespace Banking.ViewModels
 				}
 				else if (!string.IsNullOrWhiteSpace(AccountFilter))
 				{
-					var filteredAccounts = Accounts
-						.Where(x => (x.RawText.ToLower().Contains(AccountFilter.ToLower()) || 
-							x.Name.ToLower().Contains(AccountFilter.ToLower())))
+					List<Bank> filteredAccounts = Accounts
+						.Where(x => x.RawText.ToLower().Contains(AccountFilter.ToLower()) ||
+							x.Name.ToLower().Contains(AccountFilter.ToLower()))
 						.ToList();
 
 					FilteredAccounts = new ObservableCollection<Bank>(filteredAccounts);
@@ -131,11 +132,11 @@ namespace Banking.ViewModels
 					View.BankingDataGrid.ItemsSource = Accounts;
 				}
 			}
-    }
+		}
 
-    public void OpenAccount(Bank account)
-    {
-      BankAccountViewModel accountMV = new BankAccountViewModel(MainVM);
+		public void OpenAccount(Bank account)
+		{
+			BankAccountViewModel accountMV = new BankAccountViewModel(MainVM);
 			bool? Result = accountMV.ShowAccount(View, account, Tallies);
 
 			if ((bool)Result)
@@ -159,6 +160,6 @@ namespace Banking.ViewModels
 				}
 			}
 		}
-  }
+	}
 
 }
