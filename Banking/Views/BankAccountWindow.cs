@@ -1,6 +1,5 @@
 ﻿using Banking.ViewModels;
 
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,7 +12,6 @@ namespace Banking.Views
 	{
 		private readonly BankAccountViewModel AccountVM;
 		private readonly MainViewModel VM;
-		public List<string> Origins { get; set; }
 
 		public BankAccountWindow(MainViewModel mainVM, BankAccountViewModel account)
 		{

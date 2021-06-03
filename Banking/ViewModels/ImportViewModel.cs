@@ -5,29 +5,29 @@ using System.Linq;
 
 namespace Banking.ViewModels
 {
-  public class ImportViewModel
-  {
-    private ImportWindow View { get; set; }
+	public class ImportViewModel
+	{
+		private ImportWindow View { get; set; }
 
-    private readonly OptionViewModel Options;
+		private readonly OptionViewModel Options;
 
-    public ImportViewModel(OptionViewModel options, MainWindow parent)
-    {
-      Options = options;
+		public ImportViewModel(OptionViewModel options, MainWindow parent)
+		{
+			Options = options;
 
-      OpenImportTable();
+			OpenImportTable();
 
-      View = new ImportWindow(this)
-      {
-        Top = parent.Top + 20,
-        Left = parent.Left + 20
-      };
+			View = new ImportWindow(this)
+			{
+				Top = parent.Top + 20,
+				Left = parent.Left + 20
+			};
 
-      View.ShowDialog();
-    }
+			View.ShowDialog();
+		}
 
-    private async void OpenImportTable()
-    {
+		private async void OpenImportTable()
+		{
 			using BankingDbContext db = new BankingDbContext(Options.DbConnection);
 			var Imports = await (from a in db.Imports
 													 orderby a.Date descending
@@ -35,11 +35,11 @@ namespace Banking.ViewModels
 			View.ImportDataGrid.ItemsSource = Imports;
 		}
 
-    public void OpenImport(Import import)
-    {
-      ImportDetailViewModel detailMV = new ImportDetailViewModel();
-      detailMV.ShowAccount(View, import);
-    }
+		public void OpenImport(Import import)
+		{
+			ImportDetailViewModel detailMV = new ImportDetailViewModel();
+			detailMV.ShowAccount(View, import);
+		}
 
-  }
+	}
 }

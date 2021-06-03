@@ -44,7 +44,7 @@ namespace Banking.Exceptions
 	public class ImportFileHeaderException : Exception
 	{
 		private static string GenerateErrorMessage(string fileName, int numberOfFields, int countOfFields) =>
-	$"The import file \"{fileName}\" expected {numberOfFields} fields, not {countOfFields}.";
+			$"The import file \"{fileName}\" expected {numberOfFields} fields, not {countOfFields}.";
 		public string FileName { get; }
 		public int NumberOfFields { get; }
 		public int CountOfFields { get; }
@@ -60,7 +60,8 @@ namespace Banking.Exceptions
 		}
 
 		public ImportFileHeaderException(string fileName, int numberOfFields, int countOfFields, Exception inner) :
-			base(GenerateErrorMessage(fileName, numberOfFields, countOfFields), inner) { }
+			base(GenerateErrorMessage(fileName, numberOfFields, countOfFields), inner)
+		{ }
 
 		protected ImportFileHeaderException(
 		SerializationInfo info,

@@ -1,3 +1,6 @@
+Version 2.2.2.68 (2021-06-02)
+* Source cleanup.
+
 Version 2.2.2.67 (2021-06-02)
 * BankAccount improved to select the origin.
 

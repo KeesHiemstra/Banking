@@ -98,8 +98,10 @@
     <Compile Include="Extensions\ServiceExtensions.cs" />
     <Compile Include="Models\ABNImport.cs" />
     <Compile Include="Models\Balance.cs" />
+    <Compile Include="Models\BalanceAmount.cs" />
     <Compile Include="Models\Bank.cs" />
     <Compile Include="Models\BankingDbContext.cs" />
+    <Compile Include="Models\CurrentBalance.cs" />
     <Compile Include="Models\Import.cs" />
     <Compile Include="Models\OVCard.cs" />
     <Compile Include="Models\Overview.cs" />

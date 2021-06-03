@@ -116,8 +116,8 @@
         Height="21"
         Margin="0,5,5,0"
         Command="cmd:TalliesRulesWindowCommands.Save"
-        IsEnabled="{Binding IsUpdateRule}"
-        Content="_Save" />
+        Content="_Save"
+        IsEnabled="{Binding IsUpdateRule}" />
       <Button
         Name="UndoButton"
         Width="75"

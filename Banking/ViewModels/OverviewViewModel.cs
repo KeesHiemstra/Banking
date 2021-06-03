@@ -16,7 +16,7 @@ namespace Banking.ViewModels
 		private List<(string Month, string Tally, decimal SumAmount)> Pivot { get; set; } = 
 			new List<(string Month, string Tally, decimal SumAmount)>();
 		private DataView PivotView { get; set; }
-		
+
 		public List<string> Overviews { get; } = new List<string>
 			{
 				"Gezamelijk af",
@@ -26,7 +26,7 @@ namespace Banking.ViewModels
 				"Alles"
 			};
 		public DataSet Data { get; set; } = new DataSet("Data");
-		
+
 		#region INotifyPropertyChanged
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(string propertyName = "")
@@ -221,6 +221,6 @@ namespace Banking.ViewModels
 			Incomes,
 			All
 		}
-		
+
 	}
 }

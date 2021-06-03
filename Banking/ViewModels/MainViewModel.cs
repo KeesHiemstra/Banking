@@ -13,7 +13,6 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -134,7 +133,7 @@ namespace Banking.ViewModels
 
 		#region INotifyPropertyChanged
 		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(string propertyName = "") => 
+		private void NotifyPropertyChanged(string propertyName = "") =>
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		#endregion
 
@@ -168,7 +167,7 @@ namespace Banking.ViewModels
 					MessageBoxImage.Exclamation);
 				Application.Current.Shutdown();
 			}
-			
+
 			OpenBalances();
 			GetCurrentBalances();
 		}
@@ -309,11 +308,11 @@ namespace Banking.ViewModels
 				catch (Exception ex)
 				{
 					Log.Write($"Error opening balances: {ex.Message}");
-					MessageBox.Show(ex.Message, 
-						"Corrupt Balance.json", 
-						MessageBoxButton.OK, 
+					MessageBox.Show(ex.Message,
+						"Corrupt Balance.json",
+						MessageBoxButton.OK,
 						MessageBoxImage.Warning);
-				} 
+				}
 			}
 		}
 
@@ -426,9 +425,9 @@ namespace Banking.ViewModels
 				Log.Write("Tallies rules file is copied");
 			}
 
-			MessageBox.Show($"Backup created successful", 
-				"Backup", 
-				MessageBoxButton.OK, 
+			MessageBox.Show($"Backup created successful",
+				"Backup",
+				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 		}
 

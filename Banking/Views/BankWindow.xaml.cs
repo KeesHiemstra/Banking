@@ -7,33 +7,33 @@ using System.Windows.Input;
 
 namespace Banking.Views
 {
-  /// <summary>
-  /// Interaction logic for BankWindow.xaml
-  /// </summary>
-  public partial class BankWindow : Window
-  {
-    private readonly BankViewModel ModelView;
+	/// <summary>
+	/// Interaction logic for BankWindow.xaml
+	/// </summary>
+	public partial class BankWindow : Window
+	{
+		private readonly BankViewModel ModelView;
 
-    public BankWindow(BankViewModel modelView)
-    {
-      InitializeComponent();
+		public BankWindow(BankViewModel modelView)
+		{
+			InitializeComponent();
 
-      ModelView = modelView;
+			ModelView = modelView;
 			DataContext = ModelView;
-    }
+		}
 
-    private void BankingDataGrid_KeyUp(object sender, KeyEventArgs e)
-    {
-      if (e.Key == Key.Enter)
-      {
-        ModelView.OpenAccount((Bank)((DataGrid)sender).CurrentItem);
-      }
-    }
+		private void BankingDataGrid_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				ModelView.OpenAccount((Bank)((DataGrid)sender).CurrentItem);
+			}
+		}
 
-    private void BankingDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-    {
-      ModelView.OpenAccount((Bank)((DataGrid)sender).CurrentItem);
-    }
+		private void BankingDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			ModelView.OpenAccount((Bank)((DataGrid)sender).CurrentItem);
+		}
 
 		private void FilterButton_Click(object sender, RoutedEventArgs e)
 		{

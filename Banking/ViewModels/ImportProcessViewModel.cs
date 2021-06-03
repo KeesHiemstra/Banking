@@ -91,10 +91,10 @@ namespace Banking.ViewModels
 
 			Log($"Start ProcessMissedTallies() with {CheckMissedTallies()} missed tallies");
 
-      if (MainVM.TalliesRules.Count == 0)
-      {
-        MainVM.ReadTalliesRules();
-      }
+			if (MainVM.TalliesRules.Count == 0)
+			{
+				MainVM.ReadTalliesRules();
+			}
 
 			using (BankingDbContext db = new BankingDbContext(Options.DbConnection))
 			{

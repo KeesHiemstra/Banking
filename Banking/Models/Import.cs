@@ -4,34 +4,34 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Banking.Models
 {
 	[Table("Import")]
-  public class Import
-  {
-    [Key]
-    public int Id { get; set; }
+	public class Import
+	{
+		[Key]
+		public int Id { get; set; }
 
-    [Required]
-    [DataType(DataType.DateTime)]
-    public System.DateTime ImportDate { get; set; }
+		[Required]
+		[DataType(DataType.DateTime)]
+		public System.DateTime ImportDate { get; set; }
 
-    [Required]
-    public string Account { get; set; }
+		[Required]
+		public string Account { get; set; }
 
-    [Required]
-    [DataType(DataType.Date)]
-    public System.DateTime Date { get; set; }
+		[Required]
+		[DataType(DataType.Date)]
+		public System.DateTime Date { get; set; }
 
-    [Required]
-    public string Mutation { get; set; }
+		[Required]
+		public string Mutation { get; set; }
 
-    [Required]
-    public decimal Amount { get; set; }
+		[Required]
+		public decimal Amount { get; set; }
 
-    public string Name { get; set; }
+		public string Name { get; set; }
 
-    public string CounterAccount { get; set; }
+		public string CounterAccount { get; set; }
 
-    public string Text { get; set; }
+		public string Text { get; set; }
 
-    public string RawText { get; set; }
-  }
+		public string RawText { get; set; }
+	}
 }

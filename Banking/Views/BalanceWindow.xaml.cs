@@ -7,10 +7,10 @@ using System.Windows.Input;
 
 namespace Banking.Views
 {
-  /// <summary>
-  /// Interaction logic for BalanceWindow.xaml
-  /// </summary>
-  public partial class BalanceWindow : Window
+	/// <summary>
+	/// Interaction logic for BalanceWindow.xaml
+	/// </summary>
+	public partial class BalanceWindow : Window
 	{
 		public MainViewModel MainMV { get; set; }
 		public BalanceViewModel BalanceMV { get; set; } 

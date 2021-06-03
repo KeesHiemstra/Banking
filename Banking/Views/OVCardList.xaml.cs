@@ -4,10 +4,10 @@ using System.Windows;
 
 namespace Banking.Views
 {
-  /// <summary>
-  /// Interaction logic for OVCardList.xaml
-  /// </summary>
-  public partial class OVCardList : Window
+	/// <summary>
+	/// Interaction logic for OVCardList.xaml
+	/// </summary>
+	public partial class OVCardList : Window
 	{
 		OVCardViewModel CardMV { get; set; }
 

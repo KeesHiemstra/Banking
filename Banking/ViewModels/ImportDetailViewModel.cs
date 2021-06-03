@@ -4,30 +4,30 @@ using Banking.Views;
 namespace Banking.ViewModels
 {
 	public class ImportDetailViewModel
-  {
-    public Import Detail { get; set; }
+	{
+		public Import Detail { get; set; }
 
-    public void ShowAccount(ImportWindow parent, Import detail)
-    {
-      Detail = detail;
+		public void ShowAccount(ImportWindow parent, Import detail)
+		{
+			Detail = detail;
 
-      ImportDetailWindow view = new ImportDetailWindow(this)
-      {
-        Top = parent.Top + 20,
-        Left = parent.Left + 20
-      };
+			ImportDetailWindow view = new ImportDetailWindow(this)
+			{
+				Top = parent.Top + 20,
+				Left = parent.Left + 20
+			};
 
-      bool? Result = view.ShowDialog();
-      if ((bool)Result)
-      {
-        //Save the change
+			bool? Result = view.ShowDialog();
+			if ((bool)Result)
+			{
+				//Save the change
 				
-      }
-    }
+			}
+		}
 
-    internal bool CanSave()
-    {
-      return !string.IsNullOrEmpty(Detail.Mutation);
-    }
-  }
+		internal bool CanSave()
+		{
+			return !string.IsNullOrEmpty(Detail.Mutation);
+		}
+	}
 }

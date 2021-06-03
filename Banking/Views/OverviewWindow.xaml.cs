@@ -8,10 +8,10 @@ using System.Windows.Input;
 
 namespace Banking.Views
 {
-  /// <summary>
-  /// Interaction logic for OverviewWindow.xaml
-  /// </summary>
-  public partial class OverviewWindow : Window
+	/// <summary>
+	/// Interaction logic for OverviewWindow.xaml
+	/// </summary>
+	public partial class OverviewWindow : Window
 	{
 		OverviewViewModel OverviewMV { get; set; }
 

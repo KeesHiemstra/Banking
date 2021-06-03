@@ -8,10 +8,10 @@ using System.Windows.Input;
 
 namespace Banking
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow : Window
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
 	{
 		public static MainViewModel MainVM;
 
@@ -221,8 +221,8 @@ namespace Banking
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-      if (MainVM.TalliesRulesChanged)
-      {
+			if (MainVM.TalliesRulesChanged)
+			{
 				MainVM.SaveTalliesRules();
 				Log.Write("Tallies rules are saved");
 			}

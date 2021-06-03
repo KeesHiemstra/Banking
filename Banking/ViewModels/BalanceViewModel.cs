@@ -8,16 +8,16 @@ namespace Banking.ViewModels
 {
 	public class BalanceViewModel
 	{
-    #region [ Fields ]
+		#region [ Fields ]
 
-    private EditBalanceWindow EditBalanceView { get; set; }
+		private EditBalanceWindow EditBalanceView { get; set; }
 		private BalanceAmount CurrentAmount;
 
-    #endregion
+		#endregion
 
-    #region [ Properties ]
+		#region [ Properties ]
 
-    public MainViewModel MainVM { get; set; }
+		public MainViewModel MainVM { get; set; }
 		public BalanceWindow BalanceView { get; set; }
 
 		public bool AddAccount { get; set; }
