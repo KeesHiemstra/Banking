@@ -42,7 +42,8 @@ namespace Banking.ViewModels
 				}
 				catch (Exception ex)
 				{
-					Log.Write($"Import ABN file has failed after record {Cache.Count}", ex.Message, ex.InnerException.ToString());
+					//Log.Write($"Import ABN file has failed after record {Cache.Count}", ex.Message, ex.InnerException.ToString());
+					Log.Write($"Import ABN file has failed after record {Cache.Count}", ex.Message);
 					throw new ImportException("Import ABN file has failed");
 				}
 			}
@@ -208,6 +209,11 @@ namespace Banking.ViewModels
 			{
 				record.Mutation = "Betaalautomaat";
 				record.Text = record.Text.Replace("BEA   ", "");
+			}
+			else if (record.Text.StartsWith("BEA, Betaalpas   "))
+			{
+				record.Mutation = "Betaalautomaat";
+				record.Text = record.Text.Replace("BEA, Betaalpas   ", "");
 			}
 			else if (record.Text.StartsWith("GEA   "))
 			{

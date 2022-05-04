@@ -1,3 +1,6 @@
+Version 2.2.3.69 (2022-05-04)
+* Bug fix: ABN file changed the file 'Betaalautomaat' entries.
+
 Version 2.2.2.68 (2021-06-02)
 * Source cleanup.
 
