@@ -404,6 +404,11 @@ namespace Banking.ViewModels
 					record.Mutation = "Online bankieren";
 					record.Text = record.Text.Replace("/SEPA OVERBOEKING", "");
 				}
+				if (record.Text.StartsWith("/SEPA Overboeking"))
+				{
+					record.Mutation = "Online bankieren";
+					record.Text = record.Text.Replace("/SEPA Overboeking", "");
+				}
 				if (record.Text.StartsWith("/iDEAL"))
 				{
 					record.Mutation = "Online bankieren";

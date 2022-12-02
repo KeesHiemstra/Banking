@@ -1,3 +1,7 @@
+Version 2.2.3.70 (2022-12-01)
+* Bug fix: ABN file entry '/TRTP/SEPA Overboeking' was not accepted.
+* Updated Json references.
+
 Version 2.2.3.69 (2022-05-04)
 * Bug fix: ABN file changed the file 'Betaalautomaat' entries.
 
