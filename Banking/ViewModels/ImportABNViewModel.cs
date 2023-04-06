@@ -3,6 +3,7 @@ using Banking.Models;
 using CHi.Log;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -468,6 +469,17 @@ namespace Banking.ViewModels
 				}
 
 				record.Text = record.Text.Replace("/EREF/", " Kenmerk: ").Trim();
+			}
+			else if (record.Text.StartsWith("STORTING GROEN SPAAR DEPOSITO"))
+			{
+				record.Mutation = "Storting";
+			}
+			else
+			{
+				MessageBox.Show("Record.Text doesn't match",
+					"Record text",
+					MessageBoxButton.OK,
+					MessageBoxImage.Error);
 			}
 
 			while (record.Text.Contains("  "))
