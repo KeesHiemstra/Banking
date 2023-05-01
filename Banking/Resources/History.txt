@@ -1,3 +1,6 @@
+Version 2.2.3.72 (2023-05-01)
+* Bug fix: ABN introduced a record 'Rente'.
+
 Version 2.2.3.71 (2023-04-06)
 * Bug fix: ABN introduced a record 'Storting'.
 

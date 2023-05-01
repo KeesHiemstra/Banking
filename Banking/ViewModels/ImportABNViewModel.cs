@@ -474,9 +474,13 @@ namespace Banking.ViewModels
 			{
 				record.Mutation = "Storting";
 			}
+			else if (record.Text.StartsWith("RENTE EN/OF KOSTEN"))
+			{
+				record.Mutation = "Rente";
+			}
 			else
 			{
-				MessageBox.Show("Record.Text doesn't match",
+				MessageBox.Show($"Record.Text doesn't match\n{record.Text}",
 					"Record text",
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
