@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Banking.ViewModels
 {
@@ -67,6 +68,7 @@ namespace Banking.ViewModels
 			{
 				string Line = string.Empty;
 				int Count = 0;
+				OVCard pass = new OVCard();
 
 				using StreamReader sr = new StreamReader(fileName);
 				while (sr.Peek() >= 0)
@@ -77,7 +79,7 @@ namespace Banking.ViewModels
 					//Skip the header first line
 					if (Count > 1)
 					{
-						ProcessLine(Line);
+						pass = ProcessLine(Line, pass);
 					}
 				}
 			}
@@ -90,9 +92,10 @@ namespace Banking.ViewModels
 			return result;
 		}
 
-		private void ProcessLine(string line)
+		private OVCard ProcessLine(string line, OVCard card)
 		{
 			bool DivideBy100 = (decimal.Parse("1.25") == 125);
+			bool completeRecord = false;
 
 			DateTime Date;
 			DateTime CheckDate;
@@ -101,7 +104,7 @@ namespace Banking.ViewModels
 
 			if (string.IsNullOrEmpty(line))
 			{
-				return;
+				return card;
 			}
 
 			string[] Record = line.Split(';');
@@ -125,11 +128,16 @@ namespace Banking.ViewModels
 			}
 
 			OVCard record = new OVCard();
+			if (card != null) 
+			{
+				record = card;
+			};
 
 			//Date [0]
 			try
 			{
-				Date = new DateTime(Int32.Parse(Record[0].Substring(6, 4)),
+				Date = new DateTime(
+					Int32.Parse(Record[0].Substring(6, 4)),
 					Int32.Parse(Record[0].Substring(3, 2)),
 					Int32.Parse(Record[0].Substring(0, 2))
 					);
@@ -145,7 +153,8 @@ namespace Banking.ViewModels
 			{
 				try
 				{
-					CheckDate = new DateTime(Int32.Parse(Record[0].Substring(6, 4)),
+					CheckDate = new DateTime(
+						Int32.Parse(Record[0].Substring(6, 4)),
 						Int32.Parse(Record[0].Substring(3, 2)),
 						Int32.Parse(Record[0].Substring(0, 2)),
 						Int32.Parse(Record[1].Substring(0, 2)),
@@ -161,14 +170,18 @@ namespace Banking.ViewModels
 			}
 
 			//Departure [2]
-			record.Departure = Record[2];
+			if (!string.IsNullOrEmpty(Record[2]) && string.IsNullOrEmpty(record.Departure))
+			{
+				record.Departure = Record[2];
+			}
 
 			//CheckOut [3]
 			if (!string.IsNullOrEmpty(Record[3]))
 			{
 				try
 				{
-					CheckDate = new DateTime(Int32.Parse(Record[0].Substring(6, 4)),
+					CheckDate = new DateTime(
+						Int32.Parse(Record[0].Substring(6, 4)),
 						Int32.Parse(Record[0].Substring(3, 2)),
 						Int32.Parse(Record[0].Substring(0, 2)),
 						Int32.Parse(Record[3].Substring(0, 2)),
@@ -184,12 +197,22 @@ namespace Banking.ViewModels
 			}
 
 			//Destination [4]
-			record.Destination = Record[4];
+			if (!string.IsNullOrEmpty(Record[4]) && string.IsNullOrEmpty(record.Destination))
+			{
+				record.Destination = Record[4];
+			}
 
 			//Amount [5]
-			Amount = decimal.Parse(Record[5].Replace(',', '.'));
-			if (DivideBy100) { Amount /= 100; } //Correction because CultureInfo
-			record.Amount = Amount;
+			if (string.IsNullOrEmpty(Record[5]))
+			{
+				completeRecord = false;
+			}
+			else
+			{
+				Amount = decimal.Parse(Record[5].Replace(',', '.'));
+				record.Amount = Amount;
+				completeRecord = true;
+			}
 
 			//Transaction [6]
 			record.Transaction = Record[6];
@@ -212,7 +235,15 @@ namespace Banking.ViewModels
 				record.CardNumber = Record[11];
 			}
 
-			Cache.Add(record);
+			if (completeRecord)
+			{
+				Cache.Add(record);
+				return null;
+			}
+			else
+			{
+				return record;
+			}
 		}
 	}
 
