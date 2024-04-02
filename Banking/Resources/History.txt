@@ -1,3 +1,6 @@
+Version 2.2.3.74 (2024-04-02)
+* Bug fix: ABN intoduced a extra record for 'Rente'.
+
 Version 2.2.3.73 (2023-11-03)
 * Bug fix: OVCard structure was changed.
 

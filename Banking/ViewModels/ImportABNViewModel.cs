@@ -474,6 +474,14 @@ namespace Banking.ViewModels
 			{
 				record.Mutation = "Storting";
 			}
+			else if (record.Text.StartsWith("VRIJGEKOMEN BEDRAG VAN"))
+			{
+				record.Mutation = "Vrijgekomen";
+			}
+			else if (record.Text.StartsWith("VRIJGEVALLEN RENTE VAN"))
+			{
+				record.Mutation = "Rente";
+			}
 			else if (record.Text.StartsWith("RENTE EN/OF KOSTEN"))
 			{
 				record.Mutation = "Rente";
