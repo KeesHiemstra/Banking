@@ -1,3 +1,7 @@
+Version 2.2.3.75 (2024-11-06)
+* Bug fix: OVCard structure didn't contain double quotes around every field.
+* Bug fix: OVCard did has a record where 'transactie' field containd 'Saldo opgeladen'.
+
 Version 2.2.3.74 (2024-04-02)
 * Bug fix: ABN intoduced a extra record for 'Rente'.
 

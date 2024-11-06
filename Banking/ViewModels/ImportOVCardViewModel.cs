@@ -124,7 +124,16 @@ namespace Banking.ViewModels
 			//Remove the quotes
 			for (int i = 0; i < Record.Count(); i++)
 			{
-				Record[i] = Record[i].Substring(1, Record[i].Length - 2);
+				if (Record[i].Contains("\""))
+				{
+					Record[i] = Record[i].Substring(1, Record[i].Length - 2);
+				}
+			}
+
+			//Skip record that not contain travel information
+			if (Record[6] == "Saldo opgeladen")
+			{
+				return null;
 			}
 
 			OVCard record = new OVCard();
