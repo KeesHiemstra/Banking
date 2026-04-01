@@ -64,6 +64,7 @@ namespace Banking.ViewModels
 				while (sr.Peek() >= 0)
 				{
 					Line = sr.ReadLine();
+					Line = Line.Replace('|', '=');
 
 					if (separator == null)
 					{
@@ -80,7 +81,9 @@ namespace Banking.ViewModels
 					Line = Line
 						.Replace(separator, "|")
 						.Replace("\"", "");
+
 					Count++;
+
 					//Skip the header first line
 					if (Count > 1)
 					{
@@ -159,9 +162,9 @@ namespace Banking.ViewModels
 				Account = Record[2],
 				CounterAccount = Record[3],
 				Amount = Amount,
-				Mutation = Record[7],
-				Text = Record[8],
-				RawText = Record[8]
+				Mutation = Record[7].Replace("=","|"),
+				Text = Record[8].Replace("=", "|"),
+				RawText = Record[8].Replace("=", "|")
 			});
 		}
 	}

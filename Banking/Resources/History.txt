@@ -1,3 +1,6 @@
+Version 2.2.3.76 (2026-04-01)
+* Bug fix: Mutation or text allowed pipeline whilst it is a reparate char.
+
 Version 2.2.3.75 (2024-11-06)
 * Bug fix: OVCard structure didn't contain double quotes around every field.
 * Bug fix: OVCard did has a record where 'transactie' field containd 'Saldo opgeladen'.
